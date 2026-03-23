@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenWatt LinkedIn Ad Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #F3F2EF; color: #000; padding: 40px 20px; }
+.page-header { max-width: 800px; margin: 0 auto 40px; text-align: center; }
+.page-header h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.page-header p { color: #666; font-size: 14px; }
+.section-label { max-width: 580px; margin: 60px auto 20px; padding: 12px 20px; background: #1E293B; color: #fff; border-radius: 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+.section-sublabel { max-width: 580px; margin: 0 auto 20px; text-align: center; color: #666; font-size: 13px; }
+
+/* LinkedIn Post Card */
+.linkedin-card {
+  max-width: 580px;
+  margin: 24px auto;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  overflow: hidden;
+}
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 16px 0;
+  gap: 10px;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #16A34A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.avatar.company {
+  border-radius: 4px;
+  background: #1E293B;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.2;
+}
+.header-text { flex: 1; }
+.header-name { font-size: 14px; font-weight: 600; color: #000; }
+.header-title { font-size: 12px; color: #666; margin-top: 1px; }
+.header-meta { font-size: 12px; color: #999; margin-top: 2px; }
+.promoted-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #999;
+  margin-top: 2px;
+}
+.promoted-badge::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #999;
+  border-radius: 50%;
+}
+
+/* Post body text */
+.card-body {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  white-space: pre-wrap;
+}
+.card-body .see-more {
+  color: #666;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Ad creative image */
+.ad-creative {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+}
+.ad-creative.dark {
+  background: #0F172A;
+  color: #fff;
+}
+.ad-creative.split {
+  flex-direction: row;
+  padding: 0;
+}
+.ad-creative.split .split-left,
+.ad-creative.split .split-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+}
+.ad-creative.split .split-left {
+  background: #DC2626;
+  color: #fff;
+}
+.ad-creative.split .split-right {
+  background: #16A34A;
+  color: #fff;
+}
+.ad-creative .accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #16A34A;
+}
+.ad-creative .stat-big {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.ad-creative .stat-label {
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.9;
+  max-width: 320px;
+}
+.ad-creative .stat-mid {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ad-creative .cta-pill {
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: #16A34A;
+  color: #fff;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.ad-creative .logo-small {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #16A34A;
+}
+.ad-creative .logo-small span { color: #94A3B8; }
+
+/* Scorecard creative */
+.ad-creative.scorecard {
+  background: #F8FAFC;
+  align-items: stretch;
+  padding: 32px;
+}
+.scorecard-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.scorecard-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1E293B;
+}
+.scorecard-header p {
+  font-size: 12px;
+  color: #64748B;
+  margin-top: 2px;
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  border: 1px solid #E2E8F0;
+}
+.score-row .pillar-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+}
+.score-row .score-bar-container {
+  width: 120px;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 4px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.score-row .score-bar {
+  height: 100%;
+  border-radius: 4px;
+}
+.score-row .score-bar.high { background: #16A34A; }
+.score-row .score-bar.mid { background: #EAB308; }
+.score-row .score-bar.low { background: #DC2626; }
+.score-row .grade {
+  font-size: 13px;
+  font-weight: 700;
+  width: 28px;
+  text-align: center;
+}
+.score-row .grade.gold { color: #16A34A; }
+.score-row .grade.silver { color: #EAB308; }
+.score-row .grade.bronze { color: #DC2626; }
+.overall-grade {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #F0FDF4;
+  border: 2px solid #16A34A;
+  border-radius: 10px;
+}
+.overall-grade .label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1E293B;
+}
+.overall-grade .grade-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.overall-grade .grade-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #16A34A;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+.overall-grade .grade-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: #16A34A;
+}
+.scorecard-blur {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, rgba(248,250,252,0.95));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+}
+.scorecard-blur .unlock {
+  padding: 8px 20px;
+  background: #16A34A;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* LinkedIn CTA bar */
+.card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid #E0E0E0;
+}
+.card-cta .cta-text { }
+.card-cta .cta-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+.card-cta .cta-desc {
+  font-size: 12px;
+  color: #666;
+  margin-top: 1px;
+}
+.card-cta .cta-button {
+  padding: 8px 20px;
+  border: 1px solid #0A66C2;
+  color: #0A66C2;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* LinkedIn engagement bar */
+.card-engagement {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid #E0E0E0;
+  gap: 16px;
+}
+.engage-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* TLA specific */
+.tla-body {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+.tla-body .hook {
+  font-weight: 600;
+  color: #000;
+}
+.tla-body .truncated {
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 620px) {
+  .ad-creative .stat-big { font-size: 48px; }
+  .ad-creative .stat-label { font-size: 15px; }
+  .ad-creative .stat-mid { font-size: 32px; }
+  .ad-creative.split .split-left,
+  .ad-creative.split .split-right { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>GreenWatt LinkedIn Ad Mockups</h1>
+  <p>How each ad format appears in the LinkedIn feed — ready for creative production</p>
+</div>
+
+<!-- ============================================ -->
+<!-- THOUGHT LEADER ADS -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 1: Thought Leader Ads (60% of Budget)</div>
+<div class="section-sublabel">These look like organic posts from Jackson's profile. Highest CTR format on LinkedIn.</div>
+
+<!-- TLA 1: The Data Reveal -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar">JD</div>
+    <div class="header-text">
+      <div class="header-name">Jackson Doyle</div>
+      <div class="header-title">Founder, GreenWatt Consulting | Lead Intelligence</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="tla-body">
+    <span class="hook">I scored 10,000 home improvement leads last quarter.</span>
+
+Here's what I found:
+
+— 38% had Gold-tier scores (contactable, verified identity, no fraud flags, strong property signals)
+— 34% were Silver (decent but gaps — usually a phone grade issue)
+— 28% were Bronze (disconnected numbers, renters, fraud signals, or TCPA risks)
+
+That means if you're buying leads without scoring, roughly 3 out of every 10 leads are Bronze-tier. You're paying full price for leads your sales team can never convert.
+
+The craziest part? Most lead providers don't even check. They sell you "pre-qualified" leads where the only qualification is that someone filled out a form.
+
+We score on 5 pillars: Contactability, Identity, Fraud & Legal, Behavioral Signals, and Property/Financial data. Every lead gets a Gold, Silver, or Bronze grade.
+
+Score 10 of your own leads free: greenwattconsultingresults.com
+
+Curious: what % of your leads do you think are actually contactable?
+  </div>
+  <div class="card-engagement">
+    <div class="engage-btn">👍 Like</div>
+    <div class="engage-btn">💬 Comment</div>
+    <div class="engage-btn">🔄 Repost</div>
+    <div class="engage-btn">📤 Send</div>
+  </div>
+</div>
+
+<!-- TLA 2: Shared Lead Rant -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar">JD</div>
+    <div class="header-text">
+      <div class="header-name">Jackson Doyle</div>
+      <div class="header-title">Founder, GreenWatt Consulting | Lead Intelligence</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="tla-body">
+    <span class="hook">Shared leads are not cheap leads. They are the most expensive leads you'll ever buy.</span>
+
+Here's the math:
+
+You buy a "shared" roofing lead for $75. Sounds cheaper than $200 exclusive, right?
+
+But that lead gets sold to 4 roofers. Each of you calls. The homeowner is annoyed by call #3 and ignores #4. Close rate on shared leads: 5-8%.
+
+Your actual cost per job: $75 / 0.06 = $1,250.
+
+Now take a scored exclusive lead at $200. One buyer. Scored for contactability, property data, and fraud before delivery. Close rate: 18-25%.
+
+Cost per job: $200 / 0.20 = $1,000.
+
+The "expensive" exclusive lead is <span class="hook">cheaper per job. Every time.</span>
+
+Stop optimizing for CPL. Start optimizing for cost per closed job.
+
+If you want to see the actual quality of your current leads — we'll score 10 for free. Link in comments.
+  </div>
+  <div class="card-engagement">
+    <div class="engage-btn">👍 Like</div>
+    <div class="engage-btn">💬 Comment</div>
+    <div class="engage-btn">🔄 Repost</div>
+    <div class="engage-btn">📤 Send</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SINGLE IMAGE ADS -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 2: Single Image Ads — Stat-Based (30% of Budget)</div>
+<div class="section-sublabel">Dark background + bold stat + green accent. One message per creative.</div>
+
+<!-- Single Image: Roofing Stat -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">63% of roofing leads never convert. Most companies blame the sales team. The real problem? You can't see lead quality until you've already paid.</div>
+  <div class="ad-creative dark">
+    <div class="logo-small">Green<span>Watt</span></div>
+    <div class="stat-big">63%</div>
+    <div class="stat-label">of roofing leads never convert to a job</div>
+    <div class="cta-pill">Score 10 Leads Free →</div>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">Score 10 of Your Roofing Leads — Free</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- Single Image: Mortgage Stat -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">Shared mortgage leads convert at 1%. At $80/lead, that's $8,000 per funded loan. Exclusive pre-scored leads convert at 5x that rate. Score 10 of your current leads and see what you're actually buying.</div>
+  <div class="ad-creative dark">
+    <div class="logo-small">Green<span>Watt</span></div>
+    <div class="stat-big">$8,000</div>
+    <div class="stat-label">cost per funded loan on shared leads</div>
+    <div class="cta-pill">Score 10 Leads Free →</div>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">$8,000 Per Funded Loan — That's Shared Leads</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- Single Image: Insurance -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">You've tried EverQuote. You've tried QuoteWizard. Your close rate tells the story. What if you could see a lead's contactability, fraud risk, and property data before you paid for it?</div>
+  <div class="ad-creative dark">
+    <div class="logo-small">Green<span>Watt</span></div>
+    <div class="stat-big" style="font-size: 56px;">3 out of 10</div>
+    <div class="stat-label">insurance leads have disconnected numbers, fraud signals, or are renters</div>
+    <div class="cta-pill">Score 10 Leads Free →</div>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">Tired of Buying Insurance Leads Blind?</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SPLIT COMPARISON ADS -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 3: Split Comparison Ads</div>
+<div class="section-sublabel">Red vs Green — shared leads vs scored exclusive. High contrast, immediate understanding.</div>
+
+<!-- Split: Shared vs Exclusive -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">Shared leads get sold to 4 contractors at once. By the time you call, the homeowner already hired someone. There's a better way to buy leads.</div>
+  <div class="ad-creative split">
+    <div class="split-left">
+      <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 16px;">Shared Leads</div>
+      <div class="stat-mid">$1,250</div>
+      <div style="font-size: 14px; margin-top: 8px; opacity: 0.9;">cost per job</div>
+      <div style="margin-top: 20px; font-size: 13px; opacity: 0.8; line-height: 1.6;">
+        Sold to 4 buyers<br>
+        5-8% close rate<br>
+        No quality visibility
+      </div>
+    </div>
+    <div class="split-right">
+      <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 16px;">Scored Exclusive</div>
+      <div class="stat-mid">$1,000</div>
+      <div style="font-size: 14px; margin-top: 8px; opacity: 0.9;">cost per job</div>
+      <div style="margin-top: 20px; font-size: 13px; opacity: 0.8; line-height: 1.6;">
+        One buyer only<br>
+        18-25% close rate<br>
+        5-pillar scoring
+      </div>
+    </div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">Stop Racing 4 Contractors to the Same Lead</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- Split: Bath Remodel -->
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">A bath remodel location needs 200+ leads/month. But if 40% are Bronze-tier — bad numbers, renters, fraud — you're burning through appointments that never close.</div>
+  <div class="ad-creative split">
+    <div class="split-left">
+      <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 16px;">Without Scoring</div>
+      <div class="stat-mid">40%</div>
+      <div style="font-size: 14px; margin-top: 8px; opacity: 0.9;">of leads are Bronze-tier</div>
+      <div style="margin-top: 20px; font-size: 13px; opacity: 0.8; line-height: 1.6;">
+        Wasted appointments<br>
+        Reps driving to bad leads<br>
+        No quality visibility
+      </div>
+    </div>
+    <div class="split-right">
+      <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 16px;">With GreenWatt</div>
+      <div class="stat-mid">Gold</div>
+      <div style="font-size: 14px; margin-top: 8px; opacity: 0.9;">leads prioritized first</div>
+      <div style="margin-top: 20px; font-size: 13px; opacity: 0.8; line-height: 1.6;">
+        Score before you book<br>
+        Skip the Bronze<br>
+        5-pillar intelligence
+      </div>
+    </div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">Score 10 Bath Remodel Leads — Free</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SCORECARD CREATIVE -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 4: Lead Scorecard Preview</div>
+<div class="section-sublabel">Show a blurred sample scorecard — teases the product, makes them want to see their own data.</div>
+
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">If your lead provider sells "pre-qualified" leads but can't show you a score — what exactly are they qualifying? We score every lead on 5 data pillars. See the difference yourself.</div>
+  <div class="ad-creative scorecard" style="position: relative;">
+    <div class="scorecard-header">
+      <h3 style="color: #16A34A; font-size: 14px; font-weight: 700; margin-bottom: 8px;">GreenWatt Lead Scorecard</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <p style="font-size: 11px; color: #94A3B8;">Sample Lead — Roofing | Phoenix, AZ</p>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="pillar-name">Contactability</div>
+      <div class="score-bar-container"><div class="score-bar high" style="width: 88%;"></div></div>
+      <div class="grade gold">A</div>
+    </div>
+    <div class="score-row">
+      <div class="pillar-name">Identity Verification</div>
+      <div class="score-bar-container"><div class="score-bar high" style="width: 92%;"></div></div>
+      <div class="grade gold">A</div>
+    </div>
+    <div class="score-row">
+      <div class="pillar-name">Fraud & Legal</div>
+      <div class="score-bar-container"><div class="score-bar high" style="width: 95%;"></div></div>
+      <div class="grade gold">A+</div>
+    </div>
+    <div class="score-row">
+      <div class="pillar-name">Behavioral Signals</div>
+      <div class="score-bar-container"><div class="score-bar mid" style="width: 62%;"></div></div>
+      <div class="grade silver">B-</div>
+    </div>
+    <div class="score-row">
+      <div class="pillar-name">Property / Financial</div>
+      <div class="score-bar-container"><div class="score-bar high" style="width: 78%;"></div></div>
+      <div class="grade gold">B+</div>
+    </div>
+    <div class="overall-grade">
+      <div class="label">Overall Lead Grade</div>
+      <div class="grade-badge">
+        <div class="grade-text">GOLD</div>
+        <div class="grade-circle">G</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; text-align: center;">
+      <div style="padding: 10px 24px; background: #16A34A; color: #fff; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-block;">Score 10 of Your Leads Free →</div>
+    </div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">"Pre-Qualified" Isn't a Score. This Is.</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- WINDOWS AD -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 5: Question Hook (Windows/Doors)</div>
+<div class="section-sublabel">Lead with a question that makes them stop and think about their own numbers.</div>
+
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">Your marketing director can tell you cost-per-lead. But can they tell you which leads will actually set an appointment? That's the difference between $200 CPL and $200 wasted.</div>
+  <div class="ad-creative dark">
+    <div class="logo-small">Green<span>Watt</span></div>
+    <div style="font-size: 36px; font-weight: 800; line-height: 1.3; max-width: 400px;">What's your real cost per window job?</div>
+    <div style="margin-top: 16px; font-size: 16px; opacity: 0.7;">If 35% of your leads are never contactable,<br>your CPL is a lie.</div>
+    <div class="cta-pill">Score 10 Leads Free →</div>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">Which Window Leads Are Worth the Appointment?</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- RETARGETING -->
+<!-- ============================================ -->
+
+<div class="section-label">Format 6: Retargeting Ad (All Verticals)</div>
+<div class="section-sublabel">For people who visited the site but didn't score leads. Short, direct, low friction.</div>
+
+<div class="linkedin-card">
+  <div class="card-header">
+    <div class="avatar company">Green<br>Watt</div>
+    <div class="header-text">
+      <div class="header-name">GreenWatt Consulting</div>
+      <div class="header-title">Lead Intelligence for Home Services & Financial Services</div>
+      <div class="promoted-badge">Promoted</div>
+    </div>
+  </div>
+  <div class="card-body">Still thinking about it? Score 10 of your leads free. Takes 2 minutes. No commitment. No credit card. Just data on what you're actually buying.</div>
+  <div class="ad-creative dark" style="aspect-ratio: 1.91 / 1;">
+    <div class="logo-small">Green<span>Watt</span></div>
+    <div style="font-size: 28px; font-weight: 800; line-height: 1.3; max-width: 440px;">10 Free Lead Scores</div>
+    <div style="margin-top: 12px; font-size: 16px; opacity: 0.7;">Your leads. Your data. Our scoring.<br>Zero risk. 60 seconds.</div>
+    <div class="cta-pill">Score Now — Free →</div>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="card-cta">
+    <div class="cta-text">
+      <div class="cta-headline">10 Free Lead Scores — See It On Your Data</div>
+      <div class="cta-desc">greenwattconsultingresults.com</div>
+    </div>
+    <div class="cta-button">Learn more</div>
+  </div>
+</div>
+
+<div style="max-width: 580px; margin: 60px auto; text-align: center; color: #999; font-size: 12px;">
+  <p>All mockups approximate LinkedIn's feed layout. Actual rendering may vary.</p>
+  <p style="margin-top: 8px;">Image specs: 1080x1080 (square) for single image, 1200x627 (landscape) for retargeting.</p>
+</div>
+
+</body>
+</html>

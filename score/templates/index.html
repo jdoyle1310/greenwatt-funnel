@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenWatt — Score 10 Leads Free</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --gw-green: #16A34A;
+    --gw-green-dark: #0B6E2F;
+    --gw-green-light: #D1FAE5;
+    --gw-green-bg: #F0FDF4;
+    --charcoal: #1E293B;
+    --dark-gray: #475569;
+    --med-gray: #94A3B8;
+    --light-gray: #F1F5F9;
+    --border-gray: #E2E8F0;
+    --red-pain: #DC2626;
+    --red-bg: #FEF2F2;
+    --white: #FFFFFF;
+    --gold: #F59E0B;
+    --gold-bg: #FFFBEB;
+    --gold-border: #FDE68A;
+    --silver-color: #6B7280;
+    --silver-bg: #F3F4F6;
+    --silver-border: #D1D5DB;
+    --bronze: #D97706;
+    --bronze-bg: #FFF7ED;
+    --bronze-border: #FED7AA;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--dark-gray); line-height: 1.6; -webkit-font-smoothing: antialiased; background: var(--white); }
+
+/* Top bar */
+.top-bar { height: 4px; background: var(--gw-green); }
+
+/* Nav */
+.nav { max-width: 960px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 22px; font-weight: 800; text-decoration: none; }
+.nav-logo .green { color: var(--gw-green); }
+.nav-logo .dark { color: var(--charcoal); }
+.nav-cred { font-size: 13px; color: var(--med-gray); }
+
+/* Container */
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px 60px; }
+
+/* Steps - only active is visible */
+.step { display: none; }
+.step.active { display: block; }
+
+/* Hero */
+.hero { text-align: center; padding: 40px 0 32px; }
+.badge { display: inline-block; background: var(--gw-green-light); color: var(--gw-green-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; }
+.hero h1 { font-size: 42px; font-weight: 800; color: var(--charcoal); line-height: 1.15; margin-bottom: 16px; }
+.hero p { font-size: 17px; color: var(--dark-gray); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+
+/* Step headers */
+.step-header { text-align: center; padding: 32px 0 24px; }
+.step-header h2 { font-size: 30px; font-weight: 800; color: var(--charcoal); margin-bottom: 10px; }
+.step-header p { font-size: 16px; color: var(--dark-gray); max-width: 560px; margin: 0 auto; }
+
+/* Demo banner */
+.demo-banner { background: var(--gold-bg); border: 1px solid var(--gold-border); color: #92400E; padding: 12px 20px; border-radius: 10px; font-size: 14px; text-align: center; margin-bottom: 24px; }
+.demo-banner strong { font-weight: 700; }
+
+/* ========== STEP 1: GATE FORM ========== */
+.form-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 16px; padding: 36px; max-width: 640px; width: 100%; margin: 0 auto; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+.field { display: flex; flex-direction: column; }
+.field.full-width { grid-column: 1 / -1; }
+.field label { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+.field input, .field select { padding: 12px 16px; border: 1px solid var(--border-gray); border-radius: 10px; font-size: 15px; font-family: inherit; color: var(--charcoal); background: var(--white); transition: border-color 0.2s; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--gw-green); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+.field input::placeholder { color: var(--med-gray); }
+
+/* CTA button */
+.cta-btn { display: inline-block; background: var(--gw-green); color: white; font-size: 17px; font-weight: 700; font-family: inherit; padding: 16px 40px; border-radius: 10px; border: none; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.2s; }
+.cta-btn:hover { background: var(--gw-green-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(22,163,74,0.3); }
+.cta-btn.full-width { width: 100%; }
+.cta-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ========== STEP 2: CSV UPLOAD ========== */
+.upload-zone { border: 2px dashed var(--border-gray); border-radius: 16px; padding: 48px 32px; text-align: center; transition: all 0.2s; cursor: pointer; background: var(--white); }
+.upload-zone.dragover { border-color: var(--gw-green); background: var(--gw-green-bg); }
+.upload-zone.has-file { border-color: var(--gw-green); border-style: solid; background: var(--gw-green-bg); }
+.upload-icon { width: 48px; height: 48px; margin: 0 auto 16px; }
+.upload-icon svg { width: 48px; height: 48px; color: var(--med-gray); }
+.upload-zone.dragover .upload-icon svg { color: var(--gw-green); }
+.upload-main { font-size: 17px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+.upload-sub { font-size: 14px; color: var(--med-gray); margin-bottom: 16px; }
+.upload-link { color: var(--gw-green); font-weight: 600; cursor: pointer; text-decoration: underline; }
+.upload-limits { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.upload-format { font-size: 12px; color: var(--med-gray); }
+
+.file-info { margin-top: 24px; padding: 20px 24px; background: var(--gw-green-bg); border: 1px solid var(--gw-green-light); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.file-info.hidden { display: none; }
+.file-name { font-weight: 700; color: var(--charcoal); font-size: 15px; }
+.file-rows { font-size: 14px; color: var(--dark-gray); }
+.file-warning { width: 100%; font-size: 13px; color: var(--bronze); font-weight: 500; }
+
+/* ========== STEP 3: FIELD MAPPING ========== */
+.mapping-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+.mapping-row { display: grid; grid-template-columns: 160px 24px 1fr 1fr; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border-gray); }
+.mapping-row:last-child { border-bottom: none; }
+.mapping-row.header { background: var(--light-gray); font-weight: 700; font-size: 12px; color: var(--med-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+.mapping-field { font-weight: 600; color: var(--charcoal); font-size: 14px; }
+.mapping-arrow { color: var(--med-gray); text-align: center; font-size: 14px; }
+.mapping-select select { width: 100%; padding: 8px 12px; border: 1px solid var(--border-gray); border-radius: 8px; font-size: 14px; font-family: inherit; color: var(--charcoal); }
+.mapping-select select.unmapped { border-color: var(--red-pain); color: var(--red-pain); }
+.mapping-preview-val { font-size: 13px; color: var(--med-gray); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.preview-section { margin-bottom: 24px; }
+.preview-section h3 { font-size: 16px; font-weight: 700; color: var(--charcoal); margin-bottom: 12px; }
+.preview-table { width: 100%; overflow-x: auto; border: 1px solid var(--border-gray); border-radius: 10px; }
+.preview-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.preview-table th { background: var(--light-gray); padding: 10px 14px; text-align: left; font-weight: 600; color: var(--charcoal); border-bottom: 1px solid var(--border-gray); }
+.preview-table td { padding: 10px 14px; border-bottom: 1px solid var(--border-gray); color: var(--dark-gray); }
+.preview-table tr:last-child td { border-bottom: none; }
+
+/* ========== STEP 4: PROCESSING ========== */
+.processing-card { max-width: 480px; width: 100%; margin: 60px auto; text-align: center; padding: 48px 32px; background: var(--white); border: 1px solid var(--border-gray); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.spinner { width: 48px; height: 48px; border: 4px solid var(--border-gray); border-top-color: var(--gw-green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 24px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.processing-card h2 { font-size: 24px; font-weight: 800; color: var(--charcoal); margin-bottom: 12px; }
+.processing-status { font-size: 16px; color: var(--dark-gray); margin-bottom: 20px; }
+.progress-bar { height: 8px; background: var(--light-gray); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
+.progress-fill { height: 100%; background: var(--gw-green); border-radius: 4px; transition: width 0.4s ease-out; width: 0%; }
+.processing-sub { font-size: 13px; color: var(--med-gray); }
+
+/* ========== STEP 5: RESULTS ========== */
+.results-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 32px; }
+.summary-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 12px; padding: 18px 12px; text-align: center; }
+.summary-num { font-size: 32px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.summary-label { font-size: 12px; color: var(--med-gray); font-weight: 500; }
+.num-scored { color: var(--charcoal); }
+.num-gold { color: var(--gold); }
+.num-silver { color: var(--silver-color); }
+.num-bronze { color: var(--bronze); }
+.num-reject { color: var(--red-pain); }
+
+/* Lead cards */
+.lead-cards { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.lead-card { background: var(--white); border: 1px solid var(--border-gray); border-radius: 12px; padding: 24px; transition: all 0.2s; }
+.lead-card.tier-gold { border-left: 4px solid var(--gold); }
+.lead-card.tier-silver { border-left: 4px solid var(--silver-color); }
+.lead-card.tier-bronze { border-left: 4px solid var(--bronze); }
+.lead-card.tier-reject { border-left: 4px solid var(--red-pain); opacity: 0.8; }
+
+.lead-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.lead-name { font-size: 16px; font-weight: 700; color: var(--charcoal); }
+.lead-score-wrap { display: flex; align-items: center; gap: 12px; }
+.score-number { font-size: 36px; font-weight: 800; color: var(--charcoal); line-height: 1; }
+.tier-badge { display: inline-block; padding: 4px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.tier-badge.gold { background: var(--gold-bg); color: #92400E; border: 1px solid var(--gold-border); }
+.tier-badge.silver { background: var(--silver-bg); color: #374151; border: 1px solid var(--silver-border); }
+.tier-badge.bronze { background: var(--bronze-bg); color: #9A3412; border: 1px solid var(--bronze-border); }
+.tier-badge.reject { background: var(--red-bg); color: var(--red-pain); border: 1px solid #FCBDBD; }
+
+.hard-kill-reason { font-size: 14px; color: var(--red-pain); font-weight: 600; margin-bottom: 12px; }
+
+.pillar-bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.pillar { display: grid; grid-template-columns: 140px 1fr 40px; align-items: center; gap: 12px; }
+.pillar-label { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+.pillar-bar-track { height: 8px; background: var(--light-gray); border-radius: 4px; overflow: hidden; }
+.pillar-bar-fill { height: 100%; border-radius: 4px; background: var(--gw-green); transition: width 0.8s ease-out; }
+.tier-reject .pillar-bar-fill { background: var(--red-pain); }
+.pillar-value { font-size: 13px; font-weight: 700; color: var(--dark-gray); text-align: right; }
+
+.reason-codes { display: flex; flex-wrap: wrap; gap: 6px; }
+.reason-pill { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+.reason-pill.positive { background: var(--gw-green-light); color: var(--gw-green-dark); }
+.reason-pill.negative { background: var(--red-bg); color: var(--red-pain); }
+
+/* TrustedForm Warning Banner */
+.tf-warning-banner {
+    background: #FEF3C7;
+    border: 2px solid #F59E0B;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+.tf-warning-icon {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.tf-warning-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #92400E;
+    margin-bottom: 4px;
+}
+.tf-warning-content p {
+    font-size: 14px;
+    color: #78350F;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Results CTA */
+.results-cta { text-align: center; padding: 48px 32px; background: var(--gw-green-bg); border-radius: 16px; border: 1px solid var(--gw-green-light); margin-top: 40px; }
+.results-cta h2 { font-size: 30px; font-weight: 800; color: var(--charcoal); margin-bottom: 14px; line-height: 1.2; }
+.results-cta p { font-size: 16px; color: var(--dark-gray); max-width: 560px; width: 100%; margin: 0 auto 24px; }
+.results-cta .cta-sub { font-size: 14px; color: var(--med-gray); margin-top: 12px; }
+
+/* Footer */
+.footer { max-width: 960px; margin: 0 auto; padding: 32px 24px; text-align: center; border-top: 1px solid var(--border-gray); }
+.footer-cred { font-size: 13px; color: var(--med-gray); margin-bottom: 8px; }
+.footer-disclaimer { font-size: 11px; color: var(--med-gray); max-width: 700px; width: 100%; margin: 0 auto; line-height: 1.5; }
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet landscape */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 16px; }
+    .form-card { max-width: 580px; padding: 28px; }
+    .results-cta { padding: 40px 24px; }
+    .results-cta h2 { font-size: 26px; }
+}
+
+/* Tablet portrait */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 30px; }
+    .hero p { font-size: 15px; }
+    .step-header h2 { font-size: 24px; }
+    .step-header p { font-size: 15px; }
+    .form-card { max-width: 100%; padding: 24px 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .nav-cred { display: none; }
+    .mapping-row { grid-template-columns: 1fr; gap: 6px; padding: 12px 16px; }
+    .mapping-row.header { display: none; }
+    .mapping-arrow { display: none; }
+    .mapping-preview-val { display: none; }
+    .results-summary { grid-template-columns: repeat(3, 1fr); }
+    .summary-num { font-size: 28px; }
+    .lead-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .score-number { font-size: 28px; }
+    .pillar { grid-template-columns: 100px 1fr 36px; gap: 8px; }
+    .pillar-label { font-size: 12px; }
+    .results-cta h2 { font-size: 24px; }
+    .results-cta p { font-size: 14px; }
+    .cta-btn { font-size: 15px; padding: 14px 28px; }
+    .upload-zone { padding: 36px 20px; }
+    .processing-card { max-width: 100%; margin: 40px auto; padding: 36px 24px; }
+    .lead-card { padding: 20px 16px; }
+    .tf-warning-banner { padding: 16px; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .nav { padding: 14px 16px; }
+    .nav-logo { font-size: 20px; }
+    .container { padding: 0 16px 48px; }
+    .hero { padding: 28px 0 24px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
+    .step-header { padding: 24px 0 18px; }
+    .step-header h2 { font-size: 22px; }
+    .step-header p { font-size: 14px; }
+    .form-card { padding: 20px 16px; border-radius: 12px; }
+    .field input, .field select { padding: 12px 14px; font-size: 16px; min-height: 44px; }
+    .cta-btn { font-size: 15px; padding: 14px 20px; min-height: 48px; width: 100%; }
+    .upload-zone { padding: 32px 16px; border-radius: 12px; }
+    .upload-main { font-size: 15px; }
+    .upload-sub { font-size: 13px; }
+    .upload-limits { flex-direction: column; gap: 8px; }
+    .file-info { padding: 16px; flex-direction: column; text-align: center; }
+    .mapping-row { padding: 10px 12px; }
+    .mapping-select select { min-height: 44px; font-size: 15px; }
+    .processing-card { padding: 32px 16px; margin: 32px auto; }
+    .processing-card h2 { font-size: 20px; }
+    .results-summary { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .summary-card { padding: 14px 8px; }
+    .summary-num { font-size: 24px; }
+    .summary-label { font-size: 11px; }
+    .lead-card { padding: 16px 14px; }
+    .lead-name { font-size: 15px; }
+    .score-number { font-size: 24px; }
+    .pillar { grid-template-columns: 80px 1fr 32px; gap: 6px; }
+    .pillar-label { font-size: 11px; }
+    .pillar-value { font-size: 12px; }
+    .reason-pill { font-size: 10px; padding: 2px 8px; }
+    .results-cta { padding: 32px 16px; border-radius: 12px; }
+    .results-cta h2 { font-size: 22px; }
+    .results-cta p { font-size: 14px; }
+    .demo-banner { font-size: 13px; padding: 10px 14px; }
+    .preview-table { font-size: 12px; }
+    .preview-table th, .preview-table td { padding: 8px 10px; }
+    .footer { padding: 24px 16px; }
+    .footer-disclaimer { font-size: 10px; }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+    .container { padding: 0 12px 40px; }
+    .hero h1 { font-size: 22px; }
+    .hero p { font-size: 13px; }
+    .step-header h2 { font-size: 20px; }
+    .step-header p { font-size: 13px; }
+    .form-card { padding: 16px 12px; }
+    .field label { font-size: 12px; }
+    .badge { font-size: 10px; padding: 5px 12px; }
+    .upload-zone { padding: 24px 12px; }
+    .upload-main { font-size: 14px; }
+    .results-summary { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .summary-num { font-size: 22px; }
+    .pillar { grid-template-columns: 70px 1fr 28px; gap: 4px; }
+    .pillar-label { font-size: 10px; }
+    .lead-name { font-size: 14px; }
+    .score-number { font-size: 22px; }
+    .tier-badge { font-size: 10px; padding: 3px 10px; }
+    .results-cta h2 { font-size: 20px; }
+    .results-cta p { font-size: 13px; }
+    .processing-card h2 { font-size: 18px; }
+    .processing-status { font-size: 14px; }
+    .nav-logo { font-size: 18px; }
+    .hard-kill-reason { font-size: 13px; }
+    .tf-warning-banner { flex-direction: column; gap: 10px; }
+    .tf-warning-content h3 { font-size: 14px; }
+    .tf-warning-content p { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<nav class="nav">
+    <a class="nav-logo" href="/"><span class="green">Green</span><span class="dark">Watt</span></a>
+    <span class="nav-cred">GreenWatt Consulting | 500K+ Leads Scored | 9 Verticals</span>
+</nav>
+
+<div class="container">
+
+{% if demo_mode %}
+<div class="demo-banner">
+    <strong>Demo Mode</strong> — Scores shown are simulated examples. The real scoring engine uses 5 different APIs to enrich every lead with 146+ data points on top of opt-in answers.
+</div>
+{% endif %}
+
+<!-- ============ STEP 1: GATE FORM ============ -->
+<section id="step-gate" class="step active">
+    <div class="hero">
+        <div class="badge">FREE LEAD SCORING TOOL</div>
+        <h1>Score 10 of Your Leads.<br>See What You're Missing.</h1>
+        <p>Upload up to 10 leads from your pipeline. We'll run them through the same scoring engine we use on every lead we deliver — and show you exactly which ones are Gold, Silver, Bronze, or dead weight.</p>
+    </div>
+    <div class="form-card">
+        <form id="gate-form">
+            <div class="form-grid">
+                <div class="field">
+                    <label>Full Name *</label>
+                    <input type="text" name="name" required placeholder="Your name">
+                </div>
+                <div class="field">
+                    <label>Company *</label>
+                    <input type="text" name="company" required placeholder="Your company">
+                </div>
+                <div class="field">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="you@company.com">
+                </div>
+                <div class="field">
+                    <label>Phone *</label>
+                    <input type="tel" name="phone" required placeholder="(555) 123-4567">
+                </div>
+                <div class="field full-width">
+                    <label>Your Vertical *</label>
+                    <select name="vertical" required>
+                        <option value="">Select your vertical...</option>
+                        <option value="Solar">Solar</option>
+                        <option value="Roofing">Roofing</option>
+                        <option value="HVAC">HVAC</option>
+                        <option value="Windows">Windows</option>
+                        <option value="Siding">Siding</option>
+                        <option value="Gutters">Gutters</option>
+                        <option value="Painting">Painting</option>
+                        <option value="Plumbing">Plumbing</option>
+                        <option value="Flooring">Flooring</option>
+                        <option value="Bath Remodel">Bath Remodel</option>
+                        <option value="Kitchen Remodel">Kitchen Remodel</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Mortgage">Mortgage</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="cta-btn full-width">Score My Leads &rarr;</button>
+        </form>
+    </div>
+</section>
+
+<!-- ============ STEP 2: CSV UPLOAD ============ -->
+<section id="step-upload" class="step">
+    <div class="step-header">
+        <h2>Upload Your Leads</h2>
+        <p>Drag and drop a CSV file with up to <strong>10 leads</strong>. We need: name, email or phone, and address.</p>
+    </div>
+    <div class="upload-zone" id="drop-zone">
+        <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg>
+        </div>
+        <p class="upload-main">Drag & drop your CSV here</p>
+        <p class="upload-sub">or <label for="file-input" class="upload-link">browse files</label></p>
+        <input type="file" id="file-input" accept=".csv" hidden>
+        <div class="upload-limits">
+            <span class="badge">MAX 10 LEADS</span>
+            <span class="upload-format">.CSV format</span>
+        </div>
+    </div>
+    <div class="file-info hidden" id="file-info">
+        <span class="file-name" id="file-name"></span>
+        <span class="file-rows" id="file-rows"></span>
+        <span class="file-warning hidden" id="file-warning"></span>
+        <button class="cta-btn" id="btn-parse" style="margin-top:8px;">Continue to Field Mapping &rarr;</button>
+    </div>
+</section>
+
+<!-- ============ STEP 3: FIELD MAPPING ============ -->
+<section id="step-mapping" class="step">
+    <div class="step-header">
+        <h2>Confirm Field Mapping</h2>
+        <p>We auto-detected your columns. Verify the mapping is correct and adjust if needed.</p>
+    </div>
+    <div class="mapping-card" id="mapping-card">
+        <div class="mapping-row header">
+            <div>Our Field</div>
+            <div></div>
+            <div>Your CSV Column</div>
+            <div>Sample Value</div>
+        </div>
+        <!-- Rows injected by JS -->
+    </div>
+    <div class="preview-section" id="preview-section">
+        <h3>Preview (first 3 leads as mapped)</h3>
+        <div class="preview-table" id="preview-table"></div>
+    </div>
+    <button class="cta-btn full-width" id="btn-score">Score These Leads &rarr;</button>
+</section>
+
+<!-- ============ STEP 4: PROCESSING ============ -->
+<section id="step-processing" class="step">
+    <div class="processing-card">
+        <div class="spinner"></div>
+        <h2>Scoring Your Leads</h2>
+        <p class="processing-status" id="processing-status">Preparing...</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="processing-sub">Running Contactability, Identity, Fraud & Legal, Behavioral, and Property/Financial checks...</p>
+    </div>
+</section>
+
+<!-- ============ STEP 5: RESULTS ============ -->
+<section id="step-results" class="step">
+    <div class="step-header">
+        <h2>Your Lead Scores</h2>
+        <p>Here's how your leads stack up across our 5-pillar scoring engine.</p>
+    </div>
+    <div id="tf-warning-container"></div>
+    <div class="results-summary" id="results-summary"></div>
+    <div class="lead-cards" id="lead-cards"></div>
+    <div class="results-cta">
+        <h2>This Was 10 Leads.<br>Imagine Your Full Pipeline.</h2>
+        <p>This scoring engine has been backtested on over 500K leads across solar, roofing, HVAC, windows, siding, gutters, bath remodel, mortgage, and insurance. The same checks that just scored your leads run on every lead we deliver — in real-time, before it hits your CRM.</p>
+        <p class="cta-sub" style="margin-bottom: 24px;">15 minutes. We'll plug your CPL and close rate into the model and tell you if a 90-day pilot is worth running.</p>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/d/cxsg-ydm-kqc/gold-program-greenwatt" style="min-width:280px;width:100%;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+    </div>
+</section>
+
+</div>
+
+<footer class="footer">
+    <p class="footer-cred">GreenWatt Consulting | 500K+ Leads Scored | 9 Verticals</p>
+    <p class="footer-disclaimer">In internal backtests across solar, roofing, HVAC, windows, siding, gutters, bath remodel, mortgage, and insurance, we cut roughly 24% of lead spend while maintaining about 90% of booked appointments and essentially all recorded sales. That's what we've seen so far — not a guarantee. Individual results depend on your market, team, and follow-up cadence.</p>
+</footer>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+    token: null,
+    vertical: null,
+    file: null,
+    columns: [],
+    mappings: {},
+    rows: [],
+    totalInFile: 0,
+    results: []
+};
+
+const REQUIRED_FIELDS = [
+    { key: 'first_name', label: 'First Name' },
+    { key: 'last_name', label: 'Last Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'phone', label: 'Phone' },
+    { key: 'address', label: 'Street Address' },
+    { key: 'city', label: 'City' },
+    { key: 'state', label: 'State' },
+    { key: 'zip', label: 'ZIP Code' },
+    { key: 'trustedform_url', label: 'TrustedForm URL (optional)' },
+];
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// PRE-FILL FROM URL PARAMS (when coming from benchmark report)
+// ============================================================
+(function prefillFromParams() {
+    const params = new URLSearchParams(window.location.search);
+    const form = document.getElementById('gate-form');
+
+    // Map URL param names to form field names
+    const mapping = {
+        'firstName': 'name',      // Landing page sends firstName, form expects name
+        'name': 'name',
+        'email': 'email',
+        'company': 'company',
+        'vertical': 'vertical'
+    };
+
+    // Vertical slug to display name mapping (landing page sends slugs, form uses display names)
+    const verticalMap = {
+        'solar': 'Solar',
+        'roofing': 'Roofing',
+        'windows': 'Windows',
+        'hvac': 'HVAC',
+        'siding': 'Siding',
+        'gutters': 'Gutters',
+        'painting': 'Painting',
+        'plumbing': 'Plumbing',
+        'bath-remodel': 'Bath Remodel',
+        'kitchen-remodel': 'Kitchen Remodel',
+        'flooring': 'Flooring',
+        'mortgage': 'Mortgage',
+        'insurance': 'Insurance'
+    };
+
+    let hasPrefilledData = false;
+
+    for (const [paramKey, fieldName] of Object.entries(mapping)) {
+        let value = params.get(paramKey);
+        if (!value) continue;
+
+        // Handle firstName + lastName combo for the name field
+        if (paramKey === 'firstName') {
+            const lastName = params.get('lastName') || '';
+            value = lastName ? value + ' ' + lastName : value;
+        }
+
+        // Convert vertical slugs to display names
+        if (fieldName === 'vertical' && verticalMap[value]) {
+            value = verticalMap[value];
+        }
+
+        const field = form.querySelector('[name="' + fieldName + '"]');
+        if (field) {
+            field.value = value;
+            hasPrefilledData = true;
+        }
+    }
+
+    // If we pre-filled data, visually indicate which fields are done
+    // and highlight phone as the one field they need to add
+    if (hasPrefilledData) {
+        const prefilled = form.querySelectorAll('input[name="name"], input[name="email"], input[name="company"], select[name="vertical"]');
+        prefilled.forEach(function(el) {
+            if (el.value) {
+                el.style.backgroundColor = '#F0FDF4';
+                el.style.borderColor = '#16A34A';
+            }
+        });
+        // Focus on phone since it's the only new field they need
+        const phoneField = form.querySelector('input[name="phone"]');
+        if (phoneField) {
+            setTimeout(function() { phoneField.focus(); }, 300);
+        }
+    }
+})();
+
+// ============================================================
+// STEP 1: GATE FORM
+// ============================================================
+document.getElementById('gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd);
+
+    try {
+        const resp = await fetch('/api/submit-prospect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const result = await resp.json();
+        if (resp.ok) {
+            state.token = result.token;
+            state.vertical = data.vertical;
+            showStep('step-upload');
+        } else {
+            alert(result.error || 'Something went wrong');
+        }
+    } catch (err) {
+        alert('Connection error. Please try again.');
+    }
+    btn.disabled = false;
+    btn.innerHTML = 'Score My Leads &rarr;';
+});
+
+// ============================================================
+// STEP 2: CSV UPLOAD
+// ============================================================
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const fileInfo = document.getElementById('file-info');
+
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && (file.name.endsWith('.csv') || file.type === 'text/csv')) handleFile(file);
+    else alert('Please upload a .csv file');
+});
+dropZone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+function handleFile(file) {
+    state.file = file;
+    dropZone.classList.add('has-file');
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const lines = e.target.result.trim().split('\n');
+        const rowCount = Math.max(0, lines.length - 1);
+        document.getElementById('file-name').textContent = file.name;
+        document.getElementById('file-rows').textContent = `${rowCount} lead${rowCount !== 1 ? 's' : ''} detected`;
+        const warning = document.getElementById('file-warning');
+        if (rowCount > 10) {
+            warning.textContent = `Only the first 10 leads will be scored.`;
+            warning.classList.remove('hidden');
+        } else {
+            warning.classList.add('hidden');
+        }
+        fileInfo.classList.remove('hidden');
+    };
+    reader.readAsText(file);
+}
+
+document.getElementById('btn-parse').addEventListener('click', async () => {
+    if (!state.file) return;
+    const btn = document.getElementById('btn-parse');
+    btn.disabled = true;
+    btn.textContent = 'Parsing...';
+
+    const fd = new FormData();
+    fd.append('file', state.file);
+    fd.append('token', state.token);
+
+    try {
+        const resp = await fetch('/api/parse-csv', { method: 'POST', body: fd });
+        const data = await resp.json();
+        if (resp.ok) {
+            state.columns = data.columns;
+            state.mappings = data.mappings;
+            state.rows = data.rows;
+            state.totalInFile = data.total_in_file;
+            renderMappingUI();
+            showStep('step-mapping');
+        } else {
+            alert(data.error || 'Failed to parse CSV');
+        }
+    } catch (err) {
+        alert('Connection error');
+    }
+    btn.disabled = false;
+    btn.innerHTML = 'Continue to Field Mapping &rarr;';
+});
+
+// ============================================================
+// STEP 3: FIELD MAPPING
+// ============================================================
+function renderMappingUI() {
+    const card = document.getElementById('mapping-card');
+    // Keep header row, clear the rest
+    const header = card.querySelector('.mapping-row.header');
+    card.innerHTML = '';
+    card.appendChild(header);
+
+    const firstRow = state.rows[0] || {};
+
+    REQUIRED_FIELDS.forEach(field => {
+        const row = document.createElement('div');
+        row.className = 'mapping-row';
+        const mapped = state.mappings[field.key] || '';
+        const sample = mapped ? (firstRow[mapped] || '') : '';
+        const isOptional = field.label.includes('optional');
+        const unmappedClass = (mapped || isOptional) ? '' : 'unmapped';
+
+        row.innerHTML = `
+            <div class="mapping-field">${field.label}</div>
+            <div class="mapping-arrow">&rarr;</div>
+            <div class="mapping-select">
+                <select data-field="${field.key}" class="${unmappedClass}">
+                    <option value="">-- Select Column --</option>
+                    ${state.columns.map(col =>
+                        `<option value="${col}" ${col === mapped ? 'selected' : ''}>${col}</option>`
+                    ).join('')}
+                </select>
+            </div>
+            <div class="mapping-preview-val">${sample}</div>
+        `;
+        card.appendChild(row);
+
+        // Update preview on change
+        row.querySelector('select').addEventListener('change', (e) => {
+            const val = e.target.value;
+            state.mappings[field.key] = val;
+            const previewEl = row.querySelector('.mapping-preview-val');
+            previewEl.textContent = val ? (firstRow[val] || '') : '';
+            e.target.classList.toggle('unmapped', !val && !isOptional);
+            renderPreview();
+        });
+    });
+
+    renderPreview();
+}
+
+function renderPreview() {
+    const container = document.getElementById('preview-table');
+    const previewRows = state.rows.slice(0, 3);
+    const mappedFields = REQUIRED_FIELDS.filter(f => state.mappings[f.key]);
+
+    if (mappedFields.length === 0 || previewRows.length === 0) {
+        container.innerHTML = '<p style="padding:16px;color:var(--med-gray);">Map at least one field to see preview.</p>';
+        return;
+    }
+
+    let html = '<table><thead><tr>';
+    mappedFields.forEach(f => { html += `<th>${f.label}</th>`; });
+    html += '</tr></thead><tbody>';
+    previewRows.forEach(row => {
+        html += '<tr>';
+        mappedFields.forEach(f => {
+            const col = state.mappings[f.key];
+            html += `<td>${row[col] || ''}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+// ============================================================
+// STEP 4: SCORE
+// ============================================================
+document.getElementById('btn-score').addEventListener('click', async () => {
+    // Validate at least name + phone or email + address mapped
+    const m = state.mappings;
+    if (!m.first_name && !m.last_name) {
+        alert('Please map at least First Name or Last Name.');
+        return;
+    }
+    if (!m.phone && !m.email) {
+        alert('Please map at least Phone or Email.');
+        return;
+    }
+
+    showStep('step-processing');
+
+    // Start progress animation
+    const totalLeads = state.rows.length;
+    let current = 0;
+    const interval = setInterval(() => {
+        current++;
+        if (current > totalLeads) { clearInterval(interval); return; }
+        document.getElementById('processing-status').textContent = `Processing lead ${current} of ${totalLeads}...`;
+        document.getElementById('progress-fill').style.width = `${(current / totalLeads) * 100}%`;
+    }, 600);
+
+    try {
+        const resp = await fetch('/api/score-leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                token: state.token,
+                vertical: state.vertical,
+                mappings: state.mappings,
+                rows: state.rows
+            })
+        });
+        const data = await resp.json();
+        clearInterval(interval);
+
+        if (resp.ok) {
+            state.results = data.results;
+            document.getElementById('progress-fill').style.width = '100%';
+            document.getElementById('processing-status').textContent = 'Done!';
+            setTimeout(() => {
+                renderResults(data);
+                showStep('step-results');
+            }, 500);
+        } else {
+            alert(data.error || 'Scoring failed');
+            showStep('step-mapping');
+        }
+    } catch (err) {
+        clearInterval(interval);
+        alert('Connection error during scoring');
+        showStep('step-mapping');
+    }
+});
+
+// ============================================================
+// STEP 5: RESULTS
+// ============================================================
+function renderResults(data) {
+    const { results, summary } = data;
+    const scored = results.filter(r => !r.hard_kill).length;
+    const rejected = results.filter(r => r.hard_kill || r.tier === 'Reject').length;
+
+    // TrustedForm warning banner
+    const tfWarningEl = document.getElementById('tf-warning-container');
+    if (data.missing_trustedform) {
+        tfWarningEl.innerHTML = `
+            <div class="tf-warning-banner">
+                <div class="tf-warning-icon">&#9888;&#65039;</div>
+                <div class="tf-warning-content">
+                    <h3>TrustedForm Data Missing — Scores Are Affected</h3>
+                    <p>Some or all of your leads are missing TrustedForm certificate URLs. Without TrustedForm, your <strong>Behavioral</strong> and <strong>Fraud &amp; Legal</strong> pillar scores are incomplete — they're based on limited data and will appear lower than they should be. Include a TrustedForm cert URL column in your CSV for the most accurate scoring.</p>
+                </div>
+            </div>
+        `;
+    } else {
+        tfWarningEl.innerHTML = '';
+    }
+
+    // Summary cards
+    const summaryEl = document.getElementById('results-summary');
+    summaryEl.innerHTML = `
+        <div class="summary-card"><div class="summary-num num-scored">${results.length}</div><div class="summary-label">Scored</div></div>
+        <div class="summary-card"><div class="summary-num num-gold">${summary.Gold || 0}</div><div class="summary-label">Gold</div></div>
+        <div class="summary-card"><div class="summary-num num-silver">${summary.Silver || 0}</div><div class="summary-label">Silver</div></div>
+        <div class="summary-card"><div class="summary-num num-bronze">${summary.Bronze || 0}</div><div class="summary-label">Bronze</div></div>
+        <div class="summary-card"><div class="summary-num num-reject">${summary.Reject || 0}</div><div class="summary-label">Rejected</div></div>
+    `;
+
+    // Lead cards
+    const cardsEl = document.getElementById('lead-cards');
+    cardsEl.innerHTML = '';
+
+    // Sort: Gold first, then Silver, Bronze, Reject
+    const tierOrder = { Gold: 0, Silver: 1, Bronze: 2, Reject: 3 };
+    const sorted = [...results].sort((a, b) => (tierOrder[a.tier] || 4) - (tierOrder[b.tier] || 4));
+
+    sorted.forEach(lead => {
+        const tierClass = lead.tier.toLowerCase();
+        const pillars = lead.pillars || {};
+        const pillarNames = { contactability: 'Contactability', identity: 'Identity', fraud_legal: 'Fraud & Legal', behavioral: 'Behavioral', property_financial: 'Property / Financial' };
+
+        let pillarsHTML = '';
+        for (const [key, val] of Object.entries(pillars)) {
+            pillarsHTML += `
+                <div class="pillar">
+                    <div class="pillar-label">${pillarNames[key] || key}</div>
+                    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width: 0%;" data-width="${val.score}%"></div></div>
+                    <div class="pillar-value">${val.score}</div>
+                </div>
+            `;
+        }
+
+        let reasonsHTML = '';
+        (lead.reason_codes || []).forEach(r => {
+            reasonsHTML += `<span class="reason-pill ${r.positive ? 'positive' : 'negative'}">${r.label}</span>`;
+        });
+
+        const card = document.createElement('div');
+        card.className = `lead-card tier-${tierClass}`;
+        card.innerHTML = `
+            <div class="lead-header">
+                <div class="lead-name">${lead.name}</div>
+                <div class="lead-score-wrap">
+                    <span class="score-number">${lead.hard_kill ? '0' : lead.score}</span>
+                    <span class="tier-badge ${tierClass}">${lead.tier}</span>
+                </div>
+            </div>
+            ${lead.hard_kill ? `<div class="hard-kill-reason">Blocked: ${lead.hard_kill_reason}</div>` : ''}
+            <div class="pillar-bars">${pillarsHTML}</div>
+            <div class="reason-codes">${reasonsHTML}</div>
+        `;
+        cardsEl.appendChild(card);
+    });
+
+    // Animate pillar bars after a short delay
+    setTimeout(() => {
+        document.querySelectorAll('.pillar-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+        });
+    }, 100);
+
+    // Update CTA with actual count
+    const ctaH2 = document.querySelector('.results-cta h2');
+    if (results.length < 10) {
+        ctaH2.innerHTML = `That Was ${results.length} Leads.<br>Imagine Your Full Pipeline.`;
+    }
+}
+</script>
+
+</body>
+</html>

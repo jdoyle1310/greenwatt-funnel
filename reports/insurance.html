@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Quality Benchmark Report — Insurance | GreenWatt Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 15px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1E293B;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: #1E293B; }
+    h2 { font-size: 1.6rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: #1E293B; margin-bottom: 8px; }
+    h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; color: #475569; margin-bottom: 4px; }
+    p { margin-bottom: 14px; color: #334155; }
+    .subtitle { font-size: 1.1rem; font-weight: 400; color: #64748B; line-height: 1.5; }
+    .section-intro { font-size: 1.0rem; color: #475569; margin-bottom: 24px; line-height: 1.65; }
+
+    /* ── TABLES ── */
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      border-bottom: 2px solid #E2E8F0;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #F1F5F9;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    tr:last-child td { border-bottom: none; }
+    .data-point-name { font-weight: 600; color: #1E293B; white-space: nowrap; }
+    .also-analyzed { color: #94A3B8; font-style: italic; font-size: 0.85rem; }
+
+    /* ── INDICATORS ── */
+    .indicator { font-size: 0.82rem; white-space: nowrap; }
+    .ind-strong-pos { color: #16A34A; font-weight: 600; }
+    .ind-pos { color: #2563EB; font-weight: 500; }
+    .ind-neutral { color: #94A3B8; }
+    .ind-neg { color: #EAB308; font-weight: 500; }
+    .ind-strong-neg { color: #DC2626; font-weight: 600; }
+    .ind-reject { color: #DC2626; font-weight: 700; }
+    .ind-bronze-cap { color: #B45309; font-weight: 600; }
+
+    /* ── CARDS / BOXES ── */
+    .source-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+    .source-card-number {
+      display: inline-block;
+      width: 28px; height: 28px;
+      background: #16A34A;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .source-card-title { font-weight: 600; font-size: 1.0rem; color: #1E293B; vertical-align: middle; }
+    .source-card p { margin-top: 8px; margin-bottom: 0; font-size: 0.9rem; color: #64748B; }
+
+    .callout {
+      border-left: 4px solid #16A34A;
+      background: #F0FDF4;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem;
+      color: #166534;
+      line-height: 1.6;
+    }
+    .callout-amber {
+      border-left-color: #B45309;
+      background: #FFFBEB;
+      color: #78350F;
+    }
+    .callout-red {
+      border-left-color: #DC2626;
+      background: #FEF2F2;
+      color: #991B1B;
+    }
+
+    /* ── TIER CARDS ── */
+    .tier-grid { display: flex; gap: 16px; margin: 24px 0; }
+    .tier-card {
+      flex: 1;
+      border-radius: 8px;
+      padding: 20px;
+      border: 2px solid;
+    }
+    .tier-card-gold { border-color: #F59E0B; }
+    .tier-card-gold .tier-label { color: #F59E0B; }
+    .tier-card-silver { border-color: #94A3B8; }
+    .tier-card-silver .tier-label { color: #94A3B8; }
+    .tier-card-bronze { border-color: #B45309; }
+    .tier-card-bronze .tier-label { color: #B45309; }
+    .tier-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .tier-range { font-size: 1.5rem; font-weight: 800; color: #1E293B; margin-bottom: 8px; }
+    .tier-card p { font-size: 0.85rem; color: #475569; margin-bottom: 0; line-height: 1.5; }
+
+    /* ── DISTRIBUTION BAR ── */
+    .dist-bar { display: flex; height: 36px; border-radius: 6px; overflow: hidden; margin: 20px 0; font-size: 0.72rem; font-weight: 600; color: #fff; }
+    .dist-gold { background: #F59E0B; flex: 12; display: flex; align-items: center; justify-content: center; }
+    .dist-silver { background: #94A3B8; flex: 29; display: flex; align-items: center; justify-content: center; }
+    .dist-bronze { background: #B45309; flex: 17; display: flex; align-items: center; justify-content: center; }
+    .dist-blocked { background: #DC2626; flex: 42; display: flex; align-items: center; justify-content: center; }
+
+    /* ── BIG NUMBER ── */
+    .big-number {
+      text-align: center;
+      padding: 32px 24px;
+      margin: 28px 0;
+      border: 2px solid #DC2626;
+      border-radius: 10px;
+    }
+    .big-number .value { font-size: 2.8rem; font-weight: 800; color: #DC2626; line-height: 1; }
+    .big-number .label { font-size: 0.95rem; color: #64748B; margin-top: 8px; }
+
+    /* ── CTA ── */
+    .cta-box {
+      display: block;
+      text-align: center;
+      padding: 20px 28px;
+      background: #16A34A;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin: 24px 0;
+      letter-spacing: -0.01em;
+    }
+    .cta-secondary {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #64748B;
+      margin-top: 12px;
+    }
+    .cta-secondary a { color: #16A34A; text-decoration: underline; }
+
+    /* ── PILL TAGS ── */
+    .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 100px;
+      font-size: 0.76rem;
+      color: #64748B;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover { justify-content: center; align-items: center; text-align: center; }
+    .cover-logo { font-size: 1.3rem; font-weight: 700; color: #16A34A; letter-spacing: -0.02em; margin-bottom: 60px; }
+    .cover-logo span { color: #1E293B; }
+    .cover h1 { font-size: 2.8rem; margin-bottom: 12px; }
+    .cover .vertical-badge {
+      display: inline-block;
+      padding: 6px 24px;
+      border: 2px solid #16A34A;
+      border-radius: 100px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #16A34A;
+      margin: 20px 0 40px;
+    }
+    .cover .tagline { font-size: 1.05rem; color: #64748B; max-width: 480px; margin: 0 auto 60px; line-height: 1.6; }
+    .cover-footer { font-size: 0.88rem; color: #94A3B8; margin-top: auto; padding-top: 40px; }
+    .cover-footer a { color: #16A34A; text-decoration: none; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 32px;
+    }
+    .page-header-logo { font-size: 0.88rem; font-weight: 700; color: #16A34A; }
+    .page-header-logo span { color: #1E293B; }
+    .page-header-vertical { font-size: 0.82rem; color: #94A3B8; font-weight: 500; }
+
+    /* ── MATH BLOCK ── */
+    .math-block {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .math-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #F1F5F9; font-size: 0.92rem; }
+    .math-line:last-child { border-bottom: none; }
+    .math-label { color: #475569; }
+    .math-value { font-weight: 700; color: #1E293B; }
+    .math-value.waste { color: #DC2626; }
+
+    /* ── SECTION BOX (Rejects/Caps) ── */
+    .section-box {
+      border: 2px solid;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .section-box-red { border-color: #DC2626; }
+    .section-box-red h3 { color: #DC2626; }
+    .section-box-bronze { border-color: #B45309; }
+    .section-box-bronze h3 { color: #B45309; }
+    .section-box ul { padding-left: 20px; margin-top: 12px; }
+    .section-box li { margin-bottom: 8px; font-size: 0.9rem; color: #475569; line-height: 1.5; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      html { font-size: 13px; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page {
+        min-height: auto;
+        padding: 40px 0;
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+      .page:last-child { page-break-after: auto; }
+      .no-break { page-break-inside: avoid; }
+      .source-card { page-break-inside: avoid; }
+      .tier-card { page-break-inside: avoid; }
+      table { page-break-inside: avoid; }
+      tr { page-break-inside: avoid; }
+      .callout { page-break-inside: avoid; }
+      .section-box { page-break-inside: avoid; }
+      .big-number { page-break-inside: avoid; }
+      .page-header {
+        position: running(pageHeader);
+      }
+      @page {
+        size: letter;
+        margin: 0.6in 0.75in;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 1: COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-logo">Green<span>Watt</span></div>
+  <h1>Lead Quality<br>Benchmark Report</h1>
+  <div class="vertical-badge">Insurance</div>
+  <p class="tagline">Hundreds of data points. 5 proprietary sources.<br>5 scoring pillars.</p>
+  <div class="cover-footer">
+    GreenWatt Consulting&ensp;|&ensp;<a href="https://greenwattconsultingresults.com">greenwattconsultingresults.com</a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2: THE SCORING SYSTEM
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>We Analyze Hundreds of Data Points Before a Lead Reaches You</h2>
+  <p class="section-intro">Every lead passes through 5 independent data sources before it receives a score. No single signal determines the outcome &mdash; the system cross-references them all.</p>
+
+  <div class="source-card">
+    <span class="source-card-number">1</span>
+    <span class="source-card-title">Phone Validation &amp; Contact Intelligence</span>
+    <p>Phone grade, activity score, line type classification, and contact reachability analysis.</p>
+  </div>
+
+  <div class="source-card">
+    <span class="source-card-number">2</span>
+    <span class="source-card-title">Property Intelligence &amp; Financial Records</span>
+    <p>Ownership status, property type, building permits, equity position, assessed value, demographics, and 38+ property flags.</p>
+  </div>
+
+  <div class="source-card">
+    <span class="source-card-number">3</span>
+    <span class="source-card-title">Identity Verification</span>
+    <p>Name matching across phone records, email accounts, and property records to verify the lead is who they claim to be.</p>
+  </div>
+
+  <div class="source-card">
+    <span class="source-card-number">4</span>
+    <span class="source-card-title">Fraud Detection &amp; Consent Verification</span>
+    <p>Bot detection, form input analysis, and account ownership verification to filter illegitimate leads.</p>
+  </div>
+
+  <div class="source-card">
+    <span class="source-card-number">5</span>
+    <span class="source-card-title">Behavioral Analysis</span>
+    <p>Form fill method, lead freshness, and engagement quality indicators that reveal intent.</p>
+  </div>
+
+  <p style="margin-top: 20px; font-size: 0.95rem; color: #475569;">These data points feed into our <strong>5-pillar scoring framework</strong> &mdash; each lead receives a <span style="color:#F59E0B;font-weight:700;">Gold</span>, <span style="color:#94A3B8;font-weight:700;">Silver</span>, or <span style="color:#B45309;font-weight:700;">Bronze</span> grade.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 3: PILLAR 1 — CONTACTABILITY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>Pillar 1: Contactability</h2>
+  <h3>Can your sales team actually reach this person?</h3>
+  <p class="section-intro">The most qualified lead in the world is worthless if nobody picks up the phone. Contactability is the first gate every lead must pass through.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Point</th>
+        <th>What It Tells You</th>
+        <th>Impact in Insurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="data-point-name">Phone Validity</td>
+        <td>Whether the phone number is real and currently active</td>
+        <td><span class="ind-reject">&#x26D4; Reject if invalid</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Phone Contact Grade</td>
+        <td>Carrier-level reachability rating (A&ndash;F) based on connection history</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive (A&ndash;B)</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Phone Activity Score</td>
+        <td>Recent usage frequency (0&ndash;100); higher means more active</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive (70+)</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Line Type</td>
+        <td>Mobile, Landline, FixedVOIP, or Virtual &mdash; each carries different contact rates</td>
+        <td><span class="ind-pos">&#x1F535; Mobile preferred</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Grade F + Activity&nbsp;&lt;40</td>
+        <td>The worst combination: unreachable number with minimal recent use</td>
+        <td><span class="ind-bronze-cap">&#x1F512; Bronze cap</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Email Validity</td>
+        <td>Whether the email address exists and can receive messages</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Email Deliverability</td>
+        <td>Inbox placement likelihood vs. bounce or spam folder</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="also-analyzed">Also analyzed: Email contact grade, email age score, free email provider detection</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 6px;">
+    <strong>Indicator key:</strong>&ensp;
+    <span class="ind-strong-pos">&#x1F7E2; Strong Positive</span>&ensp;
+    <span class="ind-pos">&#x1F535; Positive</span>&ensp;
+    <span class="ind-neutral">&#x26AA; Neutral</span>&ensp;
+    <span class="ind-neg">&#x1F7E1; Negative</span>&ensp;
+    <span class="ind-strong-neg">&#x1F534; Strong Negative</span>&ensp;
+    <span class="ind-reject">&#x26D4; Reject</span>&ensp;
+    <span class="ind-bronze-cap">&#x1F512; Bronze Cap</span>
+  </p>
+
+  <div class="callout">
+    <strong>Contactability has a minimum 0.13 weight floor across all verticals.</strong> Even perfect property signals can't overcome an unreachable lead.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 4: PILLAR 2 — IDENTITY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>Pillar 2: Identity Verification</h2>
+  <h3>Is this person who they say they are?</h3>
+  <p class="section-intro">Cross-referencing the submitted name against independent records catches typos, shared-device submissions, and outright fabrication.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Point</th>
+        <th>What It Tells You</th>
+        <th>Impact in Insurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="data-point-name">Phone Name Match</td>
+        <td>Does the submitted name match the registered owner of the phone number?</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Email Name Match</td>
+        <td>Does the submitted name match the name associated with the email account?</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Address Name Match</td>
+        <td>Does the submitted name match the resident or owner at the provided address?</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Owner Cross-Ref</td>
+        <td>Is the lead also listed as the property owner in county records?</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive &mdash; policy must match property owner</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="also-analyzed">Also analyzed: Litigator risk flag</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 5: PILLAR 3 — FRAUD & LEGAL
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>Pillar 3: Fraud &amp; Legal Compliance</h2>
+  <h3>Is this lead legitimate and safe to contact?</h3>
+  <p class="section-intro">Fraudulent leads waste money and create legal exposure. This pillar catches bots, fabricated submissions, and compliance risks before they reach your team.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Point</th>
+        <th>What It Tells You</th>
+        <th>Impact in Insurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="data-point-name">Bot Detection</td>
+        <td>Automated submission patterns &mdash; bots generate zero-value leads and inflate costs</td>
+        <td><span class="ind-reject">&#x26D4; Reject</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Confirmed Account Ownership</td>
+        <td>Verified, named, or unverified &mdash; indicates how trustworthy the form submission is</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive if verified</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Form Input Method</td>
+        <td>Typed, autofilled, or pre-populated &mdash; pre-populated forms are a strong fraud signal</td>
+        <td><span class="ind-reject">&#x26D4; Reject if pre-populated</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="also-analyzed">Also analyzed: TCPA litigator risk</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 6: PILLAR 4 — BEHAVIORAL
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>Pillar 4: Behavioral Signals</h2>
+  <h3>How engaged is this person &mdash; and how fresh is the lead?</h3>
+  <p class="section-intro">Timing and engagement quality separate leads that convert from leads that go cold. Speed-to-contact is one of the strongest predictors of conversion in insurance.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Point</th>
+        <th>What It Tells You</th>
+        <th>Impact in Insurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="data-point-name">Lead Age (seconds)</td>
+        <td>Time elapsed since form submission &mdash; freshness directly correlates with contact rate</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive when fresh</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Form Input Method</td>
+        <td>Typing indicates active engagement; autofill suggests convenience; pre-populated flags risk</td>
+        <td><span class="ind-pos">&#x1F535; Typing-only positive &mdash; more relevant for financial services and compliance</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 24px;">
+    <h3 style="margin-bottom: 12px;">Lead Freshness Thresholds</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Freshness</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="data-point-name">&lt; 5 minutes</td>
+          <td><span class="ind-strong-pos">&#x1F7E2; Ideal</span> &mdash; highest contact and conversion rates</td>
+        </tr>
+        <tr>
+          <td class="data-point-name">5 &ndash; 60 minutes</td>
+          <td><span class="ind-pos">&#x1F535; Good</span> &mdash; still warm, act quickly</td>
+        </tr>
+        <tr>
+          <td class="data-point-name">1 &ndash; 24 hours</td>
+          <td><span class="ind-neg">&#x1F7E1; Cooling</span> &mdash; decreasing returns</td>
+        </tr>
+        <tr>
+          <td class="data-point-name">&gt; 24 hours</td>
+          <td><span class="ind-strong-neg">&#x1F534; Strong Negative</span> &mdash; significantly reduced value</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 7: PILLAR 5 — PROPERTY / FINANCIAL
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>Pillar 5: Property &amp; Financial Intelligence</h2>
+  <h3>Does the property and financial profile match the project?</h3>
+  <p class="section-intro">Insurance has the most signal inversions of any vertical. Signals that are strongly positive in home services or mortgage can be negative here. Every weight is tuned specifically to insurance.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Point</th>
+        <th>What It Tells You</th>
+        <th>Impact in Insurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="data-point-name">Owner Occupied</td>
+        <td>Does the property owner live at the address?</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Confirmed Renter</td>
+        <td>Lead is renting, not owning &mdash; impacts project authority and financing</td>
+        <td><span class="ind-neg">&#x1F7E1; Moderate negative &mdash; renters insurance exists but lower value</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: SFR</td>
+        <td>Single-family residence &mdash; the standard for most home improvement projects</td>
+        <td><span class="ind-strong-pos">&#x1F7E2; Strong positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: Condo</td>
+        <td>Condominium &mdash; may have HOA restrictions on exterior modifications</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: Townhouse</td>
+        <td>Townhome &mdash; shared walls, potential HOA involvement</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: Multi-Family</td>
+        <td>Multi-unit property &mdash; different scope, financing, and decision-maker dynamics</td>
+        <td><span class="ind-pos">&#x1F535; Positive &mdash; multi-policy opportunity</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: Mobile</td>
+        <td>Mobile or manufactured home &mdash; structural limitations for many project types</td>
+        <td><span class="ind-neg">&#x1F7E1; Negative</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Property Type: Commercial</td>
+        <td>Commercial property &mdash; different sales cycle and regulatory requirements</td>
+        <td><span class="ind-neg">&#x1F7E1; Negative</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Free and Clear</td>
+        <td>No mortgage &mdash; strong equity position, different financing implications</td>
+        <td><span class="ind-neg">&#x1F7E1; Negative &mdash; without a lender mandate, homeowners feel less urgency to maintain adequate coverage</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">High Equity</td>
+        <td>Significant equity built up &mdash; access to home equity financing options</td>
+        <td><span class="ind-pos">&#x1F535; Positive</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Solar Permit / Roof Permit</td>
+        <td>Active permits on file &mdash; signals recent or planned work on the property</td>
+        <td><span class="ind-pos">&#x1F535; Roof permit positive &mdash; recent roof work signals well-maintained, insurable property with lower premiums</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Year Built</td>
+        <td>Older homes may need more work; newer homes may have warranties still active</td>
+        <td><span class="ind-neg">&#x1F7E1; Pre-1960 negative &mdash; underwriting challenges with older wiring and plumbing</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Recently Sold</td>
+        <td>Recent purchase may indicate renovation intent &mdash; or recent cash outflow</td>
+        <td><span class="ind-pos">&#x1F535; Positive &mdash; new owners must get new insurance policies</span></td>
+      </tr>
+      <tr>
+        <td class="data-point-name">Estimated Value</td>
+        <td>Property value influences project budget capacity and financing eligibility</td>
+        <td><span class="ind-pos">&#x1F535; Positive &mdash; higher value means higher premium and more commission</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 28px;">We Also Analyze</h3>
+  <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 12px;">Each of these 38+ additional data points contributes to the property &amp; financial score:</p>
+
+  <div class="pill-grid">
+    <span class="pill">Tax Lien</span>
+    <span class="pill">Pre-Foreclosure</span>
+    <span class="pill">Cash Buyer</span>
+    <span class="pill">Senior Owner</span>
+    <span class="pill">Corporate Owned</span>
+    <span class="pill">Absentee Owner (In-State)</span>
+    <span class="pill">Absentee Owner (Out-of-State)</span>
+    <span class="pill">Inherited Property</span>
+    <span class="pill">Fix and Flip</span>
+    <span class="pill">Active Listing</span>
+    <span class="pill">Expired Listing</span>
+    <span class="pill">Pending Listing</span>
+    <span class="pill">On Market</span>
+    <span class="pill">For Sale By Owner</span>
+    <span class="pill">Involuntary Lien</span>
+    <span class="pill">Mailing Address Vacant</span>
+    <span class="pill">Square Footage</span>
+    <span class="pill">Lot Size</span>
+    <span class="pill">Bedrooms</span>
+    <span class="pill">Bathrooms</span>
+    <span class="pill">Stories</span>
+    <span class="pill">Construction Type</span>
+    <span class="pill">Roof Type</span>
+    <span class="pill">Roof Condition</span>
+    <span class="pill">Pool</span>
+    <span class="pill">Garage</span>
+    <span class="pill">HOA</span>
+    <span class="pill">Open Mortgage Count</span>
+    <span class="pill">Open Mortgage Balance</span>
+    <span class="pill">Estimated Equity</span>
+    <span class="pill">Loan-to-Value Ratio</span>
+    <span class="pill">Sale Propensity</span>
+    <span class="pill">Assessed Value</span>
+    <span class="pill">Tax Amount</span>
+    <span class="pill">Household Income</span>
+    <span class="pill">Net Worth</span>
+    <span class="pill">Age</span>
+    <span class="pill">Length of Residence</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 8: INSTANT REJECTS & BRONZE CAPS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>What Gets Blocked &mdash; And Why</h2>
+  <p class="section-intro">Not every lead deserves your team's time. These rules fire before the scoring model runs, protecting you from the worst leads in any dataset.</p>
+
+  <div class="section-box section-box-red">
+    <h3>&#x26D4;&ensp;Instant Rejects &mdash; Never Delivered</h3>
+    <p style="font-size: 0.88rem; color: #991B1B; margin-top: 8px;">These leads are removed entirely. You never see them, and you never pay for them.</p>
+    <ul>
+      <li><strong>Invalid phone number</strong> &mdash; number does not exist or cannot receive calls</li>
+      <li><strong>Bot detected</strong> &mdash; automated submission identified through behavioral analysis</li>
+      <li><strong>Pre-populated form</strong> &mdash; lead data was injected, not entered by a human</li>
+      <li><strong>Household income &lt; $25K</strong> &mdash; below financing threshold for most projects</li>
+      <li><strong>Grade F + Virtual phone combo</strong> &mdash; unreachable number on a disposable line</li>
+    </ul>
+  </div>
+
+  <div class="section-box section-box-bronze">
+    <h3>&#x1F512;&ensp;Bronze Caps &mdash; Cannot Score Above Bronze</h3>
+    <p style="font-size: 0.88rem; color: #78350F; margin-top: 8px;">These leads are delivered but capped. They may convert, but the data says the odds are lower.</p>
+    <ul>
+      <li><strong>Grade F + Activity &lt; 40</strong> &mdash; worst-case reachability; phone is essentially dormant</li>
+      <li><strong>Virtual / burner phone</strong> &mdash; NonFixedVOIP line type associated with disposable numbers</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 9: GOLD vs SILVER vs BRONZE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>What Each Tier Looks Like in Insurance</h2>
+  <p class="section-intro">Every scored lead lands in one of three tiers. Here's what to expect from each.</p>
+
+  <div class="tier-grid">
+    <div class="tier-card tier-card-gold">
+      <div class="tier-label">Gold</div>
+      <div class="tier-range">78&ndash;100</div>
+      <p>Homeowner at SFR, recently purchased, roof permit on file, verified identity, Grade A-B mobile phone, high property value. Multi-policy opportunity &mdash; home + auto + umbrella.</p>
+    </div>
+    <div class="tier-card tier-card-silver">
+      <div class="tier-label">Silver</div>
+      <div class="tier-range">61&ndash;77</div>
+      <p>Good property profile but contact gaps, or strong contact but mixed property signals (older build, free-and-clear). Worth calling &mdash; just calibrate expectations on urgency.</p>
+    </div>
+    <div class="tier-card tier-card-bronze">
+      <div class="tier-label">Bronze</div>
+      <div class="tier-range">40&ndash;60</div>
+      <p>Concerns present &mdash; renter, very old build (pre-1960), free-and-clear with no recent activity, or autofill-only form submission. Lower priority queue.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 28px;">Typical Tier Distribution</h3>
+  <div class="dist-bar">
+    <div class="dist-gold">~12% Gold</div>
+    <div class="dist-silver">~29% Silver</div>
+    <div class="dist-bronze">~17% Bronze</div>
+    <div class="dist-blocked">~42% Blocked</div>
+  </div>
+  <p style="font-size: 0.85rem; color: #64748B; text-align: center;">Based on aggregate scoring data across insurance lead sources.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 10: THE COST OF NOT SCORING
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <h2>What Bad Leads Are Costing You</h2>
+  <p class="section-intro">Without scoring, your team calls every lead equally &mdash; spending the same time and energy on bots and dead phones as they do on qualified homeowners ready to buy.</p>
+
+  <p style="font-size: 1.0rem; color: #334155; margin-bottom: 4px;">If you buy <strong>500 insurance leads/month</strong> at <strong>$40/lead</strong>:</p>
+
+  <div class="math-block">
+    <div class="math-line">
+      <span class="math-label">42% blocked (210 leads &times; $40)</span>
+      <span class="math-value waste">$8,400/mo you'd waste without scoring</span>
+    </div>
+    <div class="math-line">
+      <span class="math-label">17% Bronze (85 leads)</span>
+      <span class="math-value">Your team calls these but they rarely convert</span>
+    </div>
+    <div class="math-line">
+      <span class="math-label">29% Silver (145 leads)</span>
+      <span class="math-value">Solid leads worth working systematically</span>
+    </div>
+    <div class="math-line">
+      <span class="math-label">12% Gold (60 leads)</span>
+      <span class="math-value" style="color:#16A34A;">Worth prioritizing for your best closers</span>
+    </div>
+  </div>
+
+  <div class="big-number">
+    <div class="value">$100,800</div>
+    <div class="label">per year in wasted lead spend &mdash; eliminated with scoring</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 11: CTA
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page" style="justify-content: center; align-items: center; text-align: center;">
+  <div class="page-header" style="width: 100; text-align: left;">
+    <div class="page-header-logo">Green<span>Watt</span></div>
+    <div class="page-header-vertical">Insurance</div>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h2 style="font-size: 2.0rem; margin-bottom: 16px;">See These Scores on<br>YOUR Leads</h2>
+
+    <p style="font-size: 1.1rem; color: #475569; max-width: 480px; margin-bottom: 8px;">
+      Score 10 of your insurance leads &mdash; free.
+    </p>
+    <p style="font-size: 0.95rem; color: #64748B; max-width: 480px; margin-bottom: 36px;">
+      Upload 10 leads from any source. We'll score them live across all 5 pillars. Takes 2 minutes.
+    </p>
+
+    <a class="cta-box" href="https://greenwattconsultingresults.com/score" style="max-width: 480px;">
+      Score 10 Free &rarr; greenwattconsultingresults.com/score
+    </a>
+
+    <div class="cta-secondary" style="margin-top: 20px;">
+      Rather talk to someone?<br>
+      <a href="https://calendly.com/greenwatt/15min">Book 15 minutes &rarr;</a>
+    </div>
+
+    <div style="margin-top: 60px; font-size: 0.88rem; color: #94A3B8;">
+      GreenWatt Consulting&ensp;|&ensp;<a href="https://greenwattconsultingresults.com" style="color: #16A34A; text-decoration: none;">greenwattconsultingresults.com</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenWatt — Free Lead Quality Benchmark Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gw-green: #16A34A;
+    --gw-green-dark: #0B6E2F;
+    --gw-green-light: #D1FAE5;
+    --gw-green-bg: #F0FDF4;
+    --charcoal: #1E293B;
+    --dark-gray: #475569;
+    --med-gray: #94A3B8;
+    --light-gray: #F1F5F9;
+    --border-gray: #E2E8F0;
+    --white: #FFFFFF;
+    --gold: #F59E0B;
+    --bronze: #B45309;
+    --red: #DC2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: var(--charcoal); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  .top-bar { height: 4px; background: var(--gw-green); }
+  .nav { max-width: 1080px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-size: 20px; font-weight: 800; color: var(--gw-green); letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--charcoal); }
+  .nav-cred { font-size: 12px; color: var(--med-gray); }
+
+  /* === HERO — FORM ABOVE THE FOLD === */
+  .hero-split {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 48px;
+    align-items: start;
+  }
+  .hero-copy { padding-top: 8px; }
+  .badge { display: inline-block; background: var(--gw-green-light); color: var(--gw-green-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; padding: 6px 16px; border-radius: 100px; margin-bottom: 16px; text-transform: uppercase; }
+  .hero-copy h1 { font-size: 38px; font-weight: 800; line-height: 1.15; color: var(--charcoal); margin-bottom: 16px; letter-spacing: -1px; }
+  .hero-copy .subtitle { font-size: 16px; color: var(--dark-gray); line-height: 1.65; margin-bottom: 24px; }
+
+  /* Report image */
+  .report-image { margin-bottom: 28px; }
+  .report-image img { width: 100%; max-width: 480px; display: block; margin: 0 auto; }
+
+  /* Bullet list */
+  .value-list { list-style: none; margin-bottom: 24px; }
+  .value-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 15px; color: var(--dark-gray); line-height: 1.5; }
+  .value-list .check { color: var(--gw-green); font-size: 18px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .value-list strong { color: var(--charcoal); }
+
+  /* Trust line */
+  .trust-line { font-size: 13px; color: var(--med-gray); display: flex; align-items: center; gap: 6px; }
+  .trust-line svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* === FORM CARD === */
+  .form-card {
+    background: var(--gw-green-bg);
+    border: 1px solid var(--gw-green-light);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: sticky;
+    top: 24px;
+  }
+  .form-card h2 { font-size: 22px; font-weight: 800; color: var(--charcoal); text-align: center; margin-bottom: 4px; }
+  .form-card .form-sub { font-size: 13px; color: var(--dark-gray); text-align: center; margin-bottom: 20px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; }
+  .form-group input, .form-group select { width: 100%; padding: 11px 14px; font-size: 15px; font-family: 'Inter', sans-serif; border: 1px solid var(--border-gray); border-radius: 8px; background: var(--white); color: var(--charcoal); outline: none; transition: border-color 0.15s; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--gw-green); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+  .form-group input.error, .form-group select.error { border-color: #DC2626; }
+  .form-group .error-msg { font-size: 12px; color: #DC2626; margin-top: 3px; display: none; }
+  .form-group .error-msg.show { display: block; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .submit-btn { width: 100%; padding: 14px; font-size: 16px; font-weight: 700; font-family: 'Inter', sans-serif; color: var(--white); background: var(--gw-green); border: none; border-radius: 10px; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
+  .submit-btn:hover { background: var(--gw-green-dark); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .form-disclaimer { font-size: 11px; color: var(--med-gray); text-align: center; margin-top: 10px; line-height: 1.4; }
+
+  /* === BELOW THE FOLD — WHAT'S INSIDE === */
+  .details-section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 24px 56px;
+    border-top: 1px solid var(--border-gray);
+  }
+  .details-section h2 { font-size: 28px; font-weight: 800; color: var(--charcoal); text-align: center; margin-bottom: 8px; }
+  .details-section .section-sub { font-size: 15px; color: var(--dark-gray); text-align: center; margin-bottom: 36px; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+  .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 36px; }
+  .pillar-card { background: var(--light-gray); border: 1px solid var(--border-gray); border-radius: 12px; padding: 20px; }
+  .pillar-card .pillar-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .pillar-card h3 { font-size: 15px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
+  .pillar-card p { font-size: 13px; color: var(--dark-gray); line-height: 1.5; }
+  .p1 { background: #16A34A; } .p2 { background: #3B82F6; } .p3 { background: #DC2626; } .p4 { background: #8B5CF6; } .p5 { background: #F59E0B; }
+
+  /* Sample scorecard preview */
+  .scorecard-preview {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto 36px;
+    background: var(--white);
+    border: 2px solid var(--border-gray);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .scorecard-preview .sc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .sc-header .sc-title { font-size: 14px; font-weight: 700; color: var(--gw-green); }
+  .sc-header .sc-grade { font-size: 14px; font-weight: 800; padding: 4px 12px; border-radius: 6px; }
+  .sc-header .sc-grade.gold { background: #FEF3C7; color: #92400E; }
+  .sc-row { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--light-gray); }
+  .sc-row:last-child { border-bottom: none; }
+  .sc-row .sc-label { flex: 1; font-size: 13px; color: var(--dark-gray); }
+  .sc-row .sc-bar { width: 120px; max-width: 30%; height: 6px; background: #E2E8F0; border-radius: 3px; margin-right: 10px; overflow: hidden; flex-shrink: 0; }
+  .sc-row .sc-bar-fill { height: 100%; border-radius: 3px; }
+  .sc-row .sc-bar-fill.high { background: var(--gw-green); }
+  .sc-row .sc-bar-fill.mid { background: var(--gold); }
+  .sc-row .sc-score { font-size: 13px; font-weight: 700; width: 24px; text-align: right; }
+  .sc-row .sc-score.high { color: var(--gw-green); }
+  .sc-row .sc-score.mid { color: var(--gold); }
+  .scorecard-caption { font-size: 12px; color: var(--med-gray); text-align: center; margin-top: 12px; font-style: italic; }
+
+  /* Bottom CTA */
+  .bottom-cta { text-align: center; padding: 36px 24px 0; }
+  .bottom-cta a { display: inline-block; padding: 14px 36px; background: var(--gw-green); color: var(--white); font-size: 16px; font-weight: 700; border-radius: 10px; text-decoration: none; }
+  .bottom-cta a:hover { background: var(--gw-green-dark); }
+
+  /* === FOOTER === */
+  .footer { max-width: 1080px; margin: 0 auto; padding: 32px 24px; border-top: 1px solid var(--border-gray); text-align: center; }
+  .footer-stat { font-size: 13px; font-weight: 600; color: var(--dark-gray); margin-bottom: 4px; }
+  .footer-brand { font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+  .footer-disclaimer { font-size: 11px; color: var(--med-gray); max-width: 560px; width: 100%; margin: 0 auto; line-height: 1.55; }
+
+  /* Tablet landscape */
+  @media (max-width: 1024px) {
+    .hero-split { grid-template-columns: 1fr 380px; gap: 32px; }
+    .hero-copy h1 { font-size: 32px; }
+    .stat-row { gap: 16px; }
+    .stat-item .num { font-size: 30px; }
+  }
+
+  /* Tablet portrait */
+  @media (max-width: 768px) {
+    .hero-split { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px 32px; }
+    .form-card { position: static; padding: 24px 20px; }
+    .hero-copy h1 { font-size: 28px; }
+    .hero-copy .subtitle { font-size: 15px; }
+    .stat-row { flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .stat-item .num { font-size: 28px; }
+    .stat-item .label { font-size: 11px; }
+    .value-list li { font-size: 14px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-card h2 { font-size: 20px; }
+    .details-section { padding: 32px 16px 40px; }
+    .details-section h2 { font-size: 24px; }
+    .scorecard-preview { padding: 16px; }
+    .sc-row .sc-bar { width: 80px; }
+    .nav { padding: 12px 16px; }
+    .nav-cred { font-size: 11px; }
+    .bottom-cta a { display: block; text-align: center; }
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .nav { flex-direction: column; gap: 4px; text-align: center; }
+    .hero-copy h1 { font-size: 26px; }
+    .hero-copy .subtitle { font-size: 14px; }
+    .hero-split { padding: 20px 14px 28px; gap: 20px; }
+    .form-card { padding: 22px 16px; border-radius: 12px; }
+    .form-group input, .form-group select { padding: 12px 14px; font-size: 16px; min-height: 44px; }
+    .submit-btn { min-height: 48px; font-size: 16px; }
+    .details-section { padding: 28px 14px 36px; }
+    .details-section h2 { font-size: 22px; }
+    .details-section .section-sub { font-size: 14px; }
+    .pillar-card { padding: 16px; }
+    .pillar-card h3 { font-size: 14px; }
+    .pillar-card p { font-size: 12px; }
+    .scorecard-preview { padding: 14px; margin-bottom: 24px; }
+    .sc-row .sc-bar { width: 60px; }
+    .sc-row .sc-label { font-size: 12px; }
+    .sc-row .sc-score { font-size: 12px; }
+    .sc-header .sc-title { font-size: 13px; }
+    .sc-header .sc-grade { font-size: 12px; padding: 3px 10px; }
+    .bottom-cta { padding: 24px 14px 0; }
+    .bottom-cta a { padding: 14px 24px; font-size: 15px; }
+    .footer { padding: 24px 14px; }
+    .footer-disclaimer { font-size: 10px; }
+  }
+
+  /* Small mobile */
+  @media (max-width: 400px) {
+    .hero-copy h1 { font-size: 22px; }
+    .hero-copy .subtitle { font-size: 13px; }
+    .stat-row { flex-direction: column; align-items: center; }
+    .stat-item .num { font-size: 26px; }
+    .form-card { padding: 18px 14px; }
+    .form-card h2 { font-size: 18px; }
+    .submit-btn { font-size: 15px; padding: 13px; }
+    .badge { font-size: 10px; padding: 5px 12px; }
+    .value-list li { font-size: 13px; gap: 8px; }
+    .trust-line { font-size: 12px; }
+    .scorecard-preview { padding: 12px; }
+    .sc-row .sc-bar { width: 50px; margin-right: 6px; }
+    .details-section h2 { font-size: 20px; }
+    .nav-logo { font-size: 18px; }
+    .nav-cred { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<nav class="nav">
+  <div class="nav-logo">Green<span>Watt</span></div>
+  <div class="nav-cred">500K+ Leads Scored &nbsp;|&nbsp; 13 Verticals</div>
+</nav>
+
+<!-- ============================================ -->
+<!-- HERO — COPY LEFT, FORM RIGHT, ABOVE THE FOLD -->
+<!-- ============================================ -->
+<section class="hero-split">
+  <div class="hero-copy">
+    <div class="badge">Free Benchmark Report</div>
+    <h1>42% of Your Leads Should Never Reach Your Sales Team</h1>
+    <p class="subtitle">Before a lead reaches your sales team, we screen it across hundreds of data points &mdash; phone grade, identity match, fraud signals, property records, and more. Every lead gets a Gold, Silver, or Bronze score. You see exactly what you're buying.</p>
+    <div class="report-image">
+      <img src="/assets/report-hero.png" alt="Lead Quality Benchmark Report — GreenWatt Consulting">
+    </div>
+  </div>
+
+  <!-- FORM — RIGHT SIDE, ABOVE THE FOLD -->
+  <div class="form-card">
+    <h2>Get Your Free Report</h2>
+    <p class="form-sub">Select your vertical. Takes 30 seconds.</p>
+
+    <form id="gateForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jane" required>
+          <div class="error-msg" id="err-firstName">First name is required</div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+          <div class="error-msg" id="err-lastName">Last name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Work Email</label>
+        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+        <div class="error-msg" id="err-email">Please enter a valid email</div>
+      </div>
+
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" placeholder="Acme Roofing" required>
+        <div class="error-msg" id="err-company">Company is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="vertical">Your Vertical</label>
+        <select id="vertical" name="vertical" required>
+          <option value="" disabled selected>Select your vertical</option>
+          <option value="solar">Solar</option>
+          <option value="roofing">Roofing</option>
+          <option value="windows">Windows/Doors</option>
+          <option value="hvac">HVAC</option>
+          <option value="siding">Siding</option>
+          <option value="gutters">Gutters</option>
+          <option value="painting">Painting</option>
+          <option value="plumbing">Plumbing</option>
+          <option value="bath-remodel">Bathroom Remodel</option>
+          <option value="kitchen-remodel">Kitchen Remodel</option>
+          <option value="flooring">Flooring</option>
+          <option value="mortgage">Mortgage</option>
+          <option value="insurance">Insurance</option>
+        </select>
+        <div class="error-msg" id="err-vertical">Please select a vertical</div>
+      </div>
+
+      <div class="form-group">
+        <label for="monthlySpend">Monthly Lead Spend</label>
+        <select id="monthlySpend" name="monthlySpend" required>
+          <option value="" disabled selected>Select a range</option>
+          <option value="under-5k">Under $5,000/mo</option>
+          <option value="5k-15k">$5,000 – $15,000/mo</option>
+          <option value="15k-50k">$15,000 – $50,000/mo</option>
+          <option value="50k-100k">$50,000 – $100,000/mo</option>
+          <option value="100k-plus">$100,000+/mo</option>
+        </select>
+        <div class="error-msg" id="err-monthlySpend">Please select a range</div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Get My Free Report →</button>
+      <p class="form-disclaimer">Your report downloads instantly. No phone number required.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- BELOW THE FOLD — VALUE PROPS + WHAT'S INSIDE -->
+<!-- ============================================ -->
+<section class="details-section" style="border-top:none;padding-top:0">
+  <div style="max-width:720px;margin:0 auto 40px;padding:0 24px">
+    <h2 style="text-align:center;margin-bottom:20px">What You'll Learn</h2>
+    <ul class="value-list">
+      <li><span class="check">✓</span><span><strong>Which data points predict a close in your vertical</strong> — and which ones are misleading you</span></li>
+      <li><span class="check">✓</span><span><strong>The 5 signals that guarantee a lead will never convert</strong> — so you stop paying for them</span></li>
+      <li><span class="check">✓</span><span><strong>Why some leads look good on paper but can never score above Bronze</strong> — and how to spot them instantly</span></li>
+      <li><span class="check">✓</span><span><strong>The exact dollar amount you're wasting every month</strong> — on leads that should never reach your sales team</span></li>
+      <li><span class="check">✓</span><span><strong>How to prioritize your call list</strong> — so your best reps work the leads most likely to close</span></li>
+    </ul>
+    <div class="trust-line" style="justify-content:center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" style="width:16px;height:16px;flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span style="font-size:13px;color:#94A3B8">No spam. No sales calls. No phone number required. Just data.</span>
+    </div>
+  </div>
+</section>
+
+<section class="details-section">
+  <h2>What's Inside Your Report</h2>
+  <p class="section-sub">Every lead we score is analyzed across 5 pillars using hundreds of data points from 5 proprietary sources. Your report breaks down what each signal means in your specific vertical.</p>
+
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <div class="pillar-num p1">1</div>
+      <h3>Contactability</h3>
+      <p>Phone grade (A-F), activity score, line type classification, email validity. Can your sales team actually reach this person?</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num p2">2</div>
+      <h3>Identity Verification</h3>
+      <p>Name matching across phone records, email accounts, and property records. Is this person who they say they are?</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num p3">3</div>
+      <h3>Fraud & Legal</h3>
+      <p>Bot detection, form input analysis, consent verification, litigator risk. Is this lead legitimate and safe to contact?</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num p4">4</div>
+      <h3>Behavioral Signals</h3>
+      <p>Form fill method, lead freshness, engagement quality. How engaged is this person — and how stale is the lead?</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num p5">5</div>
+      <h3>Property & Financial</h3>
+      <p>Ownership status, property type, equity, permits, value, demographics. Does the property profile match the project?</p>
+    </div>
+    <div class="pillar-card" style="border: 2px solid var(--gw-green); background: var(--gw-green-bg);">
+      <div class="pillar-num" style="background: var(--charcoal);">★</div>
+      <h3>Vertical-Specific Insights</h3>
+      <p>The same data point means different things in different verticals. Renters are neutral in solar but a Bronze cap in roofing. Your report shows what matters in YOUR industry.</p>
+    </div>
+  </div>
+
+  <!-- SAMPLE SCORECARD -->
+  <h2 style="margin-bottom: 16px;">What a Scored Lead Looks Like</h2>
+  <p class="section-sub">Every lead gets a Gold, Silver, or Bronze grade. Here's a sample scorecard — this is what you'd see for each of your 10 leads when you score them.</p>
+
+  <div class="scorecard-preview">
+    <div class="sc-header">
+      <div class="sc-title">Lead Scorecard — Sample</div>
+      <div class="sc-grade gold">GOLD</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-label">Contactability</div>
+      <div class="sc-bar"><div class="sc-bar-fill high" style="width:88%"></div></div>
+      <div class="sc-score high">A</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-label">Identity Verification</div>
+      <div class="sc-bar"><div class="sc-bar-fill high" style="width:92%"></div></div>
+      <div class="sc-score high">A</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-label">Fraud & Legal</div>
+      <div class="sc-bar"><div class="sc-bar-fill high" style="width:95%"></div></div>
+      <div class="sc-score high">A+</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-label">Behavioral Signals</div>
+      <div class="sc-bar"><div class="sc-bar-fill mid" style="width:62%"></div></div>
+      <div class="sc-score mid">B-</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-label">Property & Financial</div>
+      <div class="sc-bar"><div class="sc-bar-fill high" style="width:78%"></div></div>
+      <div class="sc-score high">B+</div>
+    </div>
+  </div>
+  <p class="scorecard-caption">Sample scorecard. Your report explains what each pillar score means for your vertical and what signals drive Gold vs Bronze.</p>
+
+  <div class="bottom-cta">
+    <a href="#gateForm" onclick="document.getElementById('firstName').focus();return false;">Get My Free Report →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-stat">500K+ leads scored across 13 verticals</div>
+  <div class="footer-brand">GreenWatt Consulting</div>
+  <div class="footer-disclaimer">Reports are based on aggregated data from our proprietary lead scoring platform. Individual results may vary.</div>
+</footer>
+
+<script>
+(function () {
+  var WEBHOOK_URL = 'https://hooks.example.com/ghl-webhook';
+  var form = document.getElementById('gateForm');
+  var submitBtn = document.getElementById('submitBtn');
+
+  var fields = [
+    { id: 'firstName', test: function (v) { return v.trim().length > 0; } },
+    { id: 'lastName',  test: function (v) { return v.trim().length > 0; } },
+    { id: 'email',     test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
+    { id: 'company',   test: function (v) { return v.trim().length > 0; } },
+    { id: 'vertical',  test: function (v) { return v !== ''; } },
+    { id: 'monthlySpend', test: function (v) { return v !== ''; } }
+  ];
+
+  fields.forEach(function (f) {
+    var el = document.getElementById(f.id);
+    el.addEventListener('input', function () { el.classList.remove('error'); document.getElementById('err-' + f.id).classList.remove('show'); });
+    el.addEventListener('change', function () { el.classList.remove('error'); document.getElementById('err-' + f.id).classList.remove('show'); });
+  });
+
+  function validate() {
+    var valid = true;
+    fields.forEach(function (f) {
+      var el = document.getElementById(f.id);
+      if (!f.test(el.value)) { el.classList.add('error'); document.getElementById('err-' + f.id).classList.add('show'); valid = false; }
+    });
+    return valid;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Preparing your report\u2026';
+
+    var firstName    = document.getElementById('firstName').value.trim();
+    var lastName     = document.getElementById('lastName').value.trim();
+    var email        = document.getElementById('email').value.trim();
+    var company      = document.getElementById('company').value.trim();
+    var vertical     = document.getElementById('vertical').value;
+    var monthlySpend = document.getElementById('monthlySpend').value;
+
+    // 1. Trigger PDF download
+    var link = document.createElement('a');
+    link.href = '/reports/' + vertical + '.pdf';
+    link.download = vertical + '-lead-quality-report.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // 2. POST to GHL webhook
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, company: company, vertical: vertical, monthlySpend: monthlySpend, source: 'benchmark-report-lander', timestamp: new Date().toISOString() })
+    }).catch(function () {});
+
+    // 3. Redirect to thank-you page
+    setTimeout(function () {
+      window.location.href = '/thank-you.html?vertical=' + encodeURIComponent(vertical) +
+        '&email=' + encodeURIComponent(email) +
+        '&name=' + encodeURIComponent(firstName) +
+        '&lastName=' + encodeURIComponent(lastName) +
+        '&company=' + encodeURIComponent(company);
+    }, 800);
+  });
+})();
+</script>
+</body>
+</html>

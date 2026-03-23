@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Report Is On Its Way — GreenWatt Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:#F8FAFC;color:#1E293B}
+.top-bar{height:4px;background:#16A34A}
+.nav{max-width:960px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#64748B}
+.logo{font-size:18px;font-weight:700}.logo span{color:#16A34A}
+.container{max-width:720px;margin:0 auto;padding:40px 24px 80px}
+
+/* Confirmation banner */
+.confirm-banner{background:#F0FDF4;border:2px solid #16A34A;border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:40px}
+.confirm-icon{width:56px;height:56px;background:#16A34A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;color:#fff}
+.confirm-banner h1{font-size:24px;font-weight:700;margin-bottom:8px}
+.confirm-banner p{font-size:15px;color:#475569;line-height:1.5}
+.confirm-banner .email-highlight{color:#16A34A;font-weight:600}
+
+/* VSL section */
+.vsl-section{margin-bottom:40px}
+.vsl-section h2{font-size:20px;font-weight:700;margin-bottom:6px;text-align:center}
+.vsl-section .subtitle{font-size:14px;color:#64748B;text-align:center;margin-bottom:20px}
+.video-container{position:relative;width:100%;padding-bottom:56.25%;background:#0F172A;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+.video-container iframe,.video-container video{position:absolute;top:0;left:0;width:100%;height:100%}
+.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer}
+.play-btn{width:72px;height:72px;background:rgba(22,163,74,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:32px;transition:transform 0.2s}
+.play-btn:hover{transform:scale(1.1)}
+.video-placeholder p{font-size:14px;opacity:0.8}
+
+/* CTA section */
+.cta-section{text-align:center;margin-bottom:32px}
+.cta-section h2{font-size:22px;font-weight:700;margin-bottom:8px}
+.cta-section p{font-size:15px;color:#475569;margin-bottom:24px;line-height:1.5}
+.cta-primary{display:inline-block;padding:16px 40px;background:#16A34A;color:#fff;font-size:17px;font-weight:700;border-radius:8px;text-decoration:none;transition:background 0.2s}
+.cta-primary:hover{background:#15803D}
+.cta-secondary{display:block;margin-top:16px;font-size:14px;color:#64748B}
+.cta-secondary a{color:#16A34A;text-decoration:none;font-weight:600}
+.cta-secondary a:hover{text-decoration:underline}
+
+/* What's in the report */
+.report-preview{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:28px 32px;margin-bottom:40px}
+.report-preview h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.pillar-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pillar-list li{display:flex;align-items:center;gap:8px;font-size:14px;color:#334155}
+.pillar-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pillar-dot.p1{background:#16A34A}
+.pillar-dot.p2{background:#3B82F6}
+.pillar-dot.p3{background:#DC2626}
+.pillar-dot.p4{background:#8B5CF6}
+.pillar-dot.p5{background:#F59E0B}
+
+/* Footer */
+.footer{max-width:960px;margin:0 auto;padding:24px;text-align:center;font-size:12px;color:#94A3B8;border-top:1px solid #E2E8F0}
+
+/* Tablet landscape */
+@media(max-width:1024px){
+  .container{max-width:640px}
+  .report-preview{padding:24px}
+}
+
+/* Tablet portrait */
+@media(max-width:768px){
+  .container{padding:32px 20px 60px}
+  .confirm-banner h1{font-size:22px}
+  .cta-primary{display:block;text-align:center}
+  .pillar-list{grid-template-columns:1fr}
+  .report-preview{padding:20px 16px}
+  .ty-scorecard{max-width:100% !important;padding:18px !important}
+  .ty-sc-bar{width:80px !important}
+  .ty-trust-box{max-width:100% !important;padding:16px !important}
+}
+
+/* Mobile */
+@media(max-width:640px){
+  .container{padding:24px 16px 60px}
+  .confirm-banner{padding:20px 16px}
+  .confirm-banner h1{font-size:19px}
+  .confirm-banner p{font-size:14px}
+  .confirm-icon{width:44px;height:44px;font-size:22px}
+  .vsl-section h2{font-size:18px}
+  .vsl-section .subtitle{font-size:13px}
+  .cta-section h2{font-size:20px}
+  .cta-section p{font-size:14px}
+  .cta-primary{display:block;text-align:center;padding:14px 24px;font-size:15px;min-height:48px}
+  .cta-secondary{font-size:13px}
+  .nav{flex-direction:column;gap:6px;text-align:center}
+  .play-btn{width:56px;height:56px;font-size:26px}
+  .ty-sc-bar{width:60px !important}
+  .ty-sc-header{flex-wrap:wrap !important;gap:8px !important}
+  .ty-sc-title{font-size:12px !important}
+  .ty-sc-grade{font-size:11px !important;padding:3px 8px !important}
+  .ty-trust-box{padding:14px 12px !important}
+  .ty-caption{font-size:12px !important;padding:0 8px}
+}
+
+/* Small mobile */
+@media(max-width:400px){
+  .container{padding:20px 12px 48px}
+  .confirm-banner h1{font-size:17px}
+  .confirm-banner p{font-size:13px}
+  .confirm-banner{padding:16px 12px;border-radius:10px}
+  .cta-section h2{font-size:18px}
+  .cta-section p{font-size:13px}
+  .cta-primary{padding:12px 20px;font-size:14px}
+  .vsl-section h2{font-size:16px}
+  .logo{font-size:16px}
+  .footer{font-size:11px;padding:16px 12px}
+  .ty-sc-header{flex-direction:column !important;align-items:flex-start !important;gap:6px !important}
+  .ty-sc-bar{width:50px !important;margin-right:6px !important}
+  .ty-scorecard{padding:14px 12px !important}
+  .ty-trust-box{padding:12px 10px !important}
+  .ty-caption{font-size:11px !important}
+}
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<nav class="nav">
+  <div class="logo"><span>Green</span>Watt</div>
+  <div>500K+ Leads Scored | 13 Verticals</div>
+</nav>
+
+<div class="container">
+  <!-- Confirmation Banner -->
+  <div class="confirm-banner">
+    <div class="confirm-icon">✓</div>
+    <h1>Your <span id="vertical-name">Lead Quality</span> Report Is Downloading</h1>
+    <p>We also sent it to <span class="email-highlight" id="user-email">your inbox</span> via email and text.</p>
+  </div>
+
+  <!-- VSL Section -->
+  <div class="vsl-section">
+    <h2>See How the Scoring Works — 2 Minutes</h2>
+    <p class="subtitle">Quick walkthrough of the 5-pillar system in action</p>
+    <div class="video-container">
+      <!-- Replace src with actual Loom embed or MP4 URL -->
+      <div class="video-placeholder" id="video-placeholder" onclick="loadVideo()">
+        <div class="play-btn">▶</div>
+        <p>Click to play walkthrough</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU'LL SEE — SCORING VISUAL -->
+  <div class="cta-section">
+    <h2>Ready to See It on YOUR Leads?</h2>
+    <p>Upload 10 leads from any source. We'll score them live across all 5 pillars. Here's exactly what you'll see for each lead:</p>
+  </div>
+
+  <!-- Sample scorecard visual -->
+  <div class="ty-scorecard" style="max-width:520px;margin:0 auto 24px;background:#fff;border:2px solid #E2E8F0;border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.06)">
+    <div class="ty-sc-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="ty-sc-title" style="font-size:14px;font-weight:700;color:#16A34A">Lead #3 — John D., Phoenix AZ</div>
+      <div class="ty-sc-grade" style="font-size:13px;font-weight:800;padding:4px 12px;border-radius:6px;background:#FEF3C7;color:#92400E">GOLD — 82</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9">
+      <div style="flex:1;font-size:13px;color:#475569">Contactability</div>
+      <div class="ty-sc-bar" style="width:120px;height:6px;background:#E2E8F0;border-radius:3px;margin-right:10px;overflow:hidden"><div style="width:88%;height:100%;background:#16A34A;border-radius:3px"></div></div>
+      <div style="font-size:13px;font-weight:700;color:#16A34A;width:24px;text-align:right">A</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9">
+      <div style="flex:1;font-size:13px;color:#475569">Identity</div>
+      <div class="ty-sc-bar" style="width:120px;height:6px;background:#E2E8F0;border-radius:3px;margin-right:10px;overflow:hidden"><div style="width:92%;height:100%;background:#16A34A;border-radius:3px"></div></div>
+      <div style="font-size:13px;font-weight:700;color:#16A34A;width:24px;text-align:right">A</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9">
+      <div style="flex:1;font-size:13px;color:#475569">Fraud & Legal</div>
+      <div class="ty-sc-bar" style="width:120px;height:6px;background:#E2E8F0;border-radius:3px;margin-right:10px;overflow:hidden"><div style="width:95%;height:100%;background:#16A34A;border-radius:3px"></div></div>
+      <div style="font-size:13px;font-weight:700;color:#16A34A;width:24px;text-align:right">A+</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9">
+      <div style="flex:1;font-size:13px;color:#475569">Behavioral</div>
+      <div class="ty-sc-bar" style="width:120px;height:6px;background:#E2E8F0;border-radius:3px;margin-right:10px;overflow:hidden"><div style="width:62%;height:100%;background:#F59E0B;border-radius:3px"></div></div>
+      <div style="font-size:13px;font-weight:700;color:#F59E0B;width:24px;text-align:right">B-</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:8px 0">
+      <div style="flex:1;font-size:13px;color:#475569">Property & Financial</div>
+      <div class="ty-sc-bar" style="width:120px;height:6px;background:#E2E8F0;border-radius:3px;margin-right:10px;overflow:hidden"><div style="width:78%;height:100%;background:#16A34A;border-radius:3px"></div></div>
+      <div style="font-size:13px;font-weight:700;color:#16A34A;width:24px;text-align:right">B+</div>
+    </div>
+    <div style="margin-top:14px;padding-top:14px;border-top:1px solid #E2E8F0;font-size:12px;color:#475569;line-height:1.5">
+      <strong style="color:#1E293B">Why Gold:</strong> Mobile phone, Grade A, activity 87. Phone + address name match confirmed. No fraud flags. Homeowner at SFR, built 1998.
+    </div>
+  </div>
+
+  <p class="ty-caption" style="text-align:center;font-size:13px;color:#94A3B8;font-style:italic;margin-bottom:28px">You'll see this for each of your 10 leads — Gold, Silver, Bronze, or Reject with the exact reasons why.</p>
+
+  <!-- Trust / Data Privacy -->
+  <div class="ty-trust-box" style="max-width:520px;margin:0 auto 28px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:20px 24px">
+    <div style="display:flex;align-items:flex-start;gap:12px">
+      <svg style="width:20px;height:20px;flex-shrink:0;margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#1E293B;margin-bottom:4px">Your data stays yours. Period.</div>
+        <p style="font-size:13px;color:#475569;line-height:1.55;margin:0">We never ask for Jornaya or TrustedForm certificate URLs — which means we have no way to claim, resell, or redirect your leads. We score them, show you the results, and that's it. Your leads can't be taken.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <p style="font-size:15px;color:#475569;margin-bottom:20px">Takes about 2 minutes. Just a CSV upload — no integrations, no API keys, no commitment.</p>
+    <a href="/score" class="cta-primary" id="score-cta">Score 10 of Your Leads — Free →</a>
+    <p class="cta-secondary">Rather talk to someone? <a href="https://calendly.com/d/cxsg-ydm-kqc/gold-program-greenwatt" target="_blank">Book a 15-minute call</a></p>
+  </div>
+</div>
+
+<footer class="footer">
+  GreenWatt Consulting | greenwattconsultingresults.com
+</footer>
+
+<script>
+// Parse URL params
+const params = new URLSearchParams(window.location.search);
+const vertical = params.get('vertical') || '';
+const email = params.get('email') || '';
+const name = params.get('name') || '';
+
+// Vertical slug to display name mapping
+const verticalNames = {
+  'solar': 'Solar',
+  'roofing': 'Roofing',
+  'windows': 'Windows/Doors',
+  'hvac': 'HVAC',
+  'siding': 'Siding',
+  'gutters': 'Gutters',
+  'painting': 'Painting',
+  'plumbing': 'Plumbing',
+  'bath-remodel': 'Bathroom Remodel',
+  'kitchen-remodel': 'Kitchen Remodel',
+  'flooring': 'Flooring',
+  'mortgage': 'Mortgage',
+  'insurance': 'Insurance'
+};
+
+const firstName = params.get('name') || '';
+const lastName = params.get('lastName') || '';
+const company = params.get('company') || '';
+
+// Personalize page
+if (vertical && verticalNames[vertical]) {
+  document.getElementById('vertical-name').textContent = verticalNames[vertical];
+  document.title = 'Your ' + verticalNames[vertical] + ' Report — GreenWatt';
+}
+if (email) {
+  document.getElementById('user-email').textContent = email;
+}
+
+// Build Score 10 link with pre-filled params (so they only need to add phone)
+const scoreParams = new URLSearchParams();
+if (firstName) scoreParams.set('firstName', firstName);
+if (lastName) scoreParams.set('lastName', lastName);
+if (email) scoreParams.set('email', email);
+if (company) scoreParams.set('company', company);
+if (vertical) scoreParams.set('vertical', vertical);
+const scoreUrl = '/score' + (scoreParams.toString() ? '?' + scoreParams.toString() : '');
+document.getElementById('score-cta').href = scoreUrl;
+
+// Video loader — replace URL with actual Loom embed or MP4
+function loadVideo() {
+  const container = document.getElementById('video-placeholder');
+  // Option 1: Loom embed
+  // container.outerHTML = '<iframe src="https://www.loom.com/embed/YOUR_LOOM_ID" frameborder="0" allowfullscreen></iframe>';
+
+  // Option 2: MP4 (self-hosted)
+  container.outerHTML = '<video controls autoplay><source src="/assets/walkthrough.mp4" type="video/mp4">Your browser does not support video.</video>';
+}
+</script>
+</body>
+</html>
